@@ -13,9 +13,10 @@
     "url": "git+https://github.com/Autodesk-Forge/viewer-nodejs-tutorial.git"
   },
   "dependencies": {
-    "cookie-parser": "^1.4.3",
-    "express": "^4.13.4",
     "bootstrap": "*",
+    "cookie-parser": "^1.4.3",
+    "ejs": "^2.5.7",
+    "express": "^4.13.4",
     "express-session": "^1.13.0",
     "font-awesome": "^4.7.0",
     "forge-apis": "^0.4.1",
