@@ -39,8 +39,8 @@ var config = require('./config');
 router.get('/user/token', function (req, res) {
 
     try {
-      var client_id = config.credentials.client_id;
-      var client_secret = config.credentials.client_secret;
+      var client_id = "npthwr03xeosvp7aGsTQoaYTcNU8WWZw";
+      var client_secret = "FZ7N9sS8AUOWqHeA";
       var scopes = config.scopePublic;
       
       var req = new forgeSDK.AuthClientTwoLegged(client_id, client_secret, scopes);
