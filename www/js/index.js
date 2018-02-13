@@ -150,3 +150,73 @@ function loadControlSelector(){
        viewer.loadExtension('_Viewing.Extension.ControlSelector');
 }
 
+
+function Boom(){
+    viewer.explode(3);
+}
+
+function SearchByTXT(text){
+    viewer.search(text,onSuccessCallback,onErrorCallback);
+}
+
+function onSuccessCallback(){
+    console.log("Good!");
+}
+
+function onErrorCallback(){
+    console.log("Bad!");
+}
+
+function Poly(){
+    console.log("Модель");
+    console.log(viewer);
+    console.log(viewer.model.getFragmentList().fragments);
+    console.log(viewer.model.getFragmentList());
+    //var list = viewer.model.getFragmentList();
+    //var material = list.materialmap[36];
+    //viewer.model.getFragmentList().materialmap[36].color.g = 12;
+    //console.log(material);
+}
+
+
+
+function getElem(){
+    var elementId = viewer.model.selector.selectedObjectIds;
+    console.log("Селектор");
+    
+    //console.log(viewer.model.selector.getSelection());
+    
+    // + console.log(elementId);
+    //console.log(viewer.model.getProperties(1394, onSuccessCallback1, onErrorCallback));
+    var tree;
+    //viewer is your viewer object
+    viewer.getObjectTree(function (objTree) {
+        tree = objTree;
+    });
+    //console.log(viewer.model.getData().instanceTree);
+    
+    console.log(viewer.model.selector.getSelection());
+    viewer.fitToView(viewer.model.selector.getSelection(),viewer.model);
+    
+    //viewer.show(1023);
+    
+    viewer.getProperties(viewer.model.selector.getSelection()[0],onSuccessCallback1,onErrorCallback);
+
+    //viewer.applyCamera(viewer.camera,true);
+    
+    // + console.log(viewer.getFragmentList().fragments.fragId2dbId[1404]);
+    //console.log(Autodesk.Revit.UI.Events);
+}
+
+function onSuccessCallback1(e){
+    console.log(e.properties);
+    console.log(e.properties[20].type);
+    e.properties[20].type = 10;
+    console.log(e.properties[20].type);
+    //e.properties[35].displayValue = 100;
+    //e.properties[35].precision = 2;
+}
+
+function Point(element){
+
+}
