@@ -24,8 +24,8 @@ var app = express();
 
 // this session will be used to save the oAuth token
 app.use(cookieParser());
-app.ser("FORGE_CLIENT_ID","npthwr03xeosvp7aGsTQoaYTcNU8WWZw");
-app.ser("FORGE_CLIENT_secret","FZ7N9sS8AUOWqHeA");
+app.set("FORGE_CLIENT_ID","npthwr03xeosvp7aGsTQoaYTcNU8WWZw");
+app.set("FORGE_CLIENT_secret","FZ7N9sS8AUOWqHeA");
 app.set('trust proxy',1) // trust first proxy - HTTPS on Heroku 
 app.use(session({
     secret: 'autodeskforge',
