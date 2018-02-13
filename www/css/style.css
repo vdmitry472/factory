@@ -113,10 +113,11 @@ width: 30px;
         position: absolute;
         right: 0;
         width: 100vw;
-
+        overflow: scroll;
+        height: 50%;
         top: calc(40% + 60px);
-        padding-top: 40px;
-    }
+        padding-top: 40px;x
+}
     
     #viewer {
         background: white;
