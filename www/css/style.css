@@ -352,7 +352,7 @@ color: RGBA(208, 14, 22, 1.00);
   .close {
       height: 20px;
       width: 20px;
-      background: white;
+      background: black;
   }
   #tooltip-canvas {
     position: absolute;
