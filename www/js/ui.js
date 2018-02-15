@@ -6,9 +6,14 @@ function openPage(pageID) {
 
 function back()
 {
+    viewer.showAll();
     $(".list"+openedPage).removeClass("open");
     
 }
+function openModal() {
+    $(".modal").addClass("open");
+}
+
 
 // Line Chart
 var salesData = {

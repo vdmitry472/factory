@@ -208,6 +208,34 @@ function getElem(){
     //console.log(Autodesk.Revit.UI.Events);
 }
 
+function showElem(id){
+    var elementId = id;
+    console.log("Селектор");
+    
+    //console.log(viewer.model.selector.getSelection());
+    
+    // + console.log(elementId);
+    //console.log(viewer.model.getProperties(1394, onSuccessCallback1, onErrorCallback));
+    var tree;
+    //viewer is your viewer object
+    viewer.getObjectTree(function (objTree) {
+        tree = objTree;
+    });
+    //console.log(viewer.model.getData().instanceTree);
+    viewer.isolate(elementId);
+    console.log(viewer.model.selector.getSelection());
+    viewer.fitToView(viewer.model.selector.getSelection(),viewer.model);
+    
+    //viewer.show(1023);
+    
+    viewer.getProperties(viewer.model.selector.getSelection()[0],onSuccessCallback1,onErrorCallback);
+
+    //viewer.applyCamera(viewer.camera,true);
+    
+    // + console.log(viewer.getFragmentList().fragments.fragId2dbId[1404]);
+    //console.log(Autodesk.Revit.UI.Events);
+}
+
 function onSuccessCallback1(e){
     console.log(e.properties);
     console.log(e.properties[20].type);
@@ -233,7 +261,7 @@ function ControlElement(id){
     this.turnOn = function(){
         IsTurnOn = true;
     };
-    
+
     this.turnOff = function(){
         IsTurnOn = false;
     };
