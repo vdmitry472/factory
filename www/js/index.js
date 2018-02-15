@@ -220,3 +220,38 @@ function onSuccessCallback1(e){
 function Point(element){
 
 }
+
+function ControlElement(id){
+    this.IdOnModel = id;
+    this.IsTurnOn = false;
+    this.Outlay = 0; // ðàñõîä
+
+    this.scaleElement = function(){
+        viewer.fitToView([this.IdOnModel],viewer.model);
+    };
+
+    this.turnOn = function(){
+        IsTurnOn = true;
+    };
+
+    this.turnOff = function(){
+        IsTurnOn = false;
+    };
+}
+
+function Enumerator(type){
+    var Point ;
+    var Id ;
+    var Type  = type;
+    var Value ;
+
+    this.drawGraph = function(){
+
+    };
+}
+
+function AddControlElem(){
+    var newElem = new ControlElement(viewer.model.selector.getSelection()[0]);
+    newElem.scaleElement();
+    console.log(newElem);
+}

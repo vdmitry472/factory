@@ -56,11 +56,20 @@ html {
 .list {
     position: absolute;
     right: 0;
+    background: RGBA(248, 249, 250, 1.00);
     width: 400px;
     top: 60px;
-    padding-top: 40px;
+    height: 100%;
+    overflow: scroll;
+    padding-top: 20px;
+    transition: 0.3s ease;
 }
-
+.list:not(:first-child) {
+    right: -400px;
+}
+.list.open {
+    transform: translateX(-100%);
+}
 #viewer {
     background: white;
     position: absolute;
@@ -72,6 +81,7 @@ html {
 }
 .list .item {
     /* base: */
+    cursor: pointer;
 background: #FFFFFF;
 box-shadow: 0 10px 20px 0 rgba(0,0,0,0.10);
 border-radius: 6px;
@@ -106,6 +116,266 @@ width: 30px;
     padding: 15px 33px;
     letter-spacing: 0.46px;
 }
+.list > p:first-child{
+width: 80%;
+cursor: pointer;
+
+margin: 10px auto;
+font-size: 20px;
+font-weight: 600;
+margin-bottom: 40px;
+position: relative;
+}
+.item.on-off{
+}
+.item.on-off p {
+    text-align: center;
+    font-weight: 500;
+    font-size: 16px;
+    padding: 15px 33px;
+    
+}
+.item.on p {
+   color: RGBA(126, 211, 33, 1.00);
+}
+.item.off p {
+color: RGBA(208, 14, 22, 1.00);
+}
+
+
+* {
+    box-sizing: border-box;
+  }
+  
+  .chart-card {
+    background: linear-gradient(-45deg, #5555FF, #9787FF);
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+    /* position: absolute; */
+    /* top: 50%; */
+    /* left: 50%; */
+    /* transform: translate(-50%, -50%); */
+    /* width: 300px; */
+    /* height: 375px; */
+    border-radius: 10px;
+    overflow: hidden;
+}
+  
+  /* hide limit values on X axis */
+  .chart-card #canvas {
+    /* margin-left: -30px; */
+    margin-right: -30px;
+    width: 100% !important;
+}
+  
+  .chart-card .about {
+    height: 125px;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .chart-card .about h3,
+  .chart-card .about .lead {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-weight: 400;
+  }
+  
+  .chart-card .about h3 {
+    font-size: 24px;
+    color: #fff;
+  }
+  
+  .chart-card .about .lead {
+    color: #eee;
+  }
+  
+  .chart-card .info {
+    float: left;
+    padding: 10px 30px 10px 0;
+  }
+  
+  .chart-card .info p {
+    font-size: 11px;
+    color: #aaa;
+    font-weight: 300;
+  }
+  
+  .legends {
+    padding-top: 20px;
+    overflow: hidden;
+  }
+  
+  .legend {
+    display: block;
+    width: 8px;
+    height: 8px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border-radius: 50%;
+  }
+  
+  .legend--this {
+    background-color: #5555FF;
+  }
+  
+  .legend--prev {
+    background-color: #FF55B8;
+  }
+  
+  .axis {
+    position: absolute;
+    color: #fff;
+    z-index: 1;
+    text-transform: uppercase;
+    display: flex;
+    width: 100%;
+    bottom: 0;
+  }
+  
+  .axis .tick {
+    flex: 1;
+    position: relative;
+    font-size: 12px;
+    font-weight: 400;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    line-height: 20px;
+}
+  
+  .axis .tick::after {
+    content: "";
+    position: absolute;
+    display: block;
+    right: 0;
+    bottom: 0;
+    width: 1px;
+    height: 170px;
+    background: rgba(255, 255, 255, 0.2);
+}
+  
+  .axis .tick .value {
+    transform: translateY(-240px);
+    opacity: 0;
+    transition: all 0.3s;
+    position: absolute;
+    top: 20px;
+    left: 0;
+    color: #fff;
+    border-radius: 2px;
+    width: 100%;
+    line-height: 20px;
+  }
+  
+  .axis .tick:hover .value.value--this {
+    transform: translateY(-160px);
+    display: block;
+    opacity: 0.4;
+  }
+  
+  .value.value--this {
+    color: #fff;
+    font-weight: bold;
+  }
+  
+  .day-number {
+    display: block;
+  }
+  
+  .day-name {
+    display: block;
+    opacity: 0.4;
+  }
+  
+  /* Animated background, credits: Manuel Pinto, https://codepen.io/P1N2O/pen/pyBNzX */
+  .chart-card {
+    background: linear-gradient(-45deg, #5555FF, #9787FF, #FF55B8, #FF8787);
+    background-size: 400% 400%;
+    height: auto !important;
+    width: 80% !important;
+    margin: auto;
+    position: relative;
+    margin-bottom: 30px;
+    animation: bg 20s infinite;
+}
+  
+  @keyframes bg
+  {
+    0% {
+          background-position: 0% 50%
+      }
+      50% {
+          background-position: 100% 50%
+      }
+      100% {
+          background-position: 0% 50%
+      }
+  }
+  
+.chart-card-2 {
+    background-color: #fff;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    /* position: absolute; */
+    /* top: 50%; */
+    /* left: 50%; */
+    /* transform: translate(-50%, -50%); */
+    max-width: 80%;
+    margin: auto;
+    margin-bottom: 40px;
+    height: 375px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+  
+  .chart-card-2 .about {
+    height: 100px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+  
+  .chart-card-2 .about h3,
+  .chart-card-2 .about .lead {
+    font-weight: 300;
+    margin: 0;
+  }
+  
+  .chart-card-2 .about h3 {
+    font-size: 24px;
+  }
+  
+  .chart-card-2 .about .lead {
+    color: #aaa;
+  }
+  
+  #tooltip-canvas {
+    position: absolute;
+    top: 150px;
+    left: 25%;
+  }
+  
+  .btn-reload {
+    position: absolute;
+    top: 330px;
+    left: 50%;
+    width: 30px;
+    margin-left: -15px;
+    -webkit-appearance: none;
+    appearance: none;
+    border: 0;
+    background: transparent;
+    outline: none;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.3s;
+  }
+  
+  .btn-reload:hover {
+    opacity: 1;
+  }
+  
+  
+  
 
 
 @media screen and (max-width: 600px) {
@@ -116,7 +386,7 @@ width: 30px;
         overflow: scroll;
         height: 50%;
         top: calc(40% + 60px);
-        padding-top: 40px;x
+        padding-top: 40px;
 }
     
     #viewer {
