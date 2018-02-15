@@ -14,6 +14,10 @@ function openModal() {
     $(".modal").addClass("open");
 }
 
+function closeModal() {
+    $(".modal").removeClass("open");
+}
+
 
 // Line Chart
 var salesData = {

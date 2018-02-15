@@ -349,7 +349,11 @@ color: RGBA(208, 14, 22, 1.00);
   .chart-card-2 .about .lead {
     color: #aaa;
   }
-  
+  .close {
+      height: 20px;
+      width: 20px;
+      background: white;
+  }
   #tooltip-canvas {
     position: absolute;
     top: 150px;
