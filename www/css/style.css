@@ -59,7 +59,7 @@ html {
     background: RGBA(248, 249, 250, 1.00);
     width: 400px;
     top: 60px;
-    height: 100%;
+    height: calc(100% - 60px);
     overflow: scroll;
     padding-top: 20px;
     transition: 0.3s ease;
@@ -75,8 +75,8 @@ html {
     position: absolute;
     left: 0;
     width: calc(100vw - 400px);
-    height: 100vh;
-    overflow:scroll;
+    height: calc(100% - 60px);
+    overflow: scroll;
     top: 60px;
 }
 .list .item {
