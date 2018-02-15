@@ -25,6 +25,7 @@ html {
     top:0;
     width: 100%;
     color: white;
+    z-index: 9990;
     background: #67AAF9;
 }
 #nav > div {
@@ -377,7 +378,59 @@ color: RGBA(208, 14, 22, 1.00);
   
   
   
-
+.modal {
+    position: fixed;
+    z-index: 9999;
+    top:0;
+    left: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background: rgba(255,255,255,0.9); 
+}
+.modal.open {
+    opacity: 1;
+    visibility: visible;
+}
+.modal > * {
+    background: white;
+    width: 400px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    padding: 20px;
+    
+    
+}
+.modal > * > * {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+}
+.modal input[type=text]
+{
+    padding: 10px 20px;
+    font-size: 14px;
+}
+.modal select {
+    font-size: 14px;
+    padding: 10px 20px;
+}
+.modal input[type=submit]
+{
+    padding: 10px 20px;
+    font-size: 14px;
+    -webkit-appearance: none;
+    border: 0;
+    background: RGBA(64, 149, 252, 1.00);
+    color: white ;
+    font-weight: 600;
+    letter-spacing: 0.6px;
+    border-radius: 3px;
+}
 
 @media screen and (max-width: 600px) {
     .list {
