@@ -207,7 +207,9 @@ function getElem(){
     // + console.log(viewer.getFragmentList().fragments.fragId2dbId[1404]);
     //console.log(Autodesk.Revit.UI.Events);
 }
-
+function showProps(e) {
+    console.log(e);
+}
 function showElem(id){
     var elementId = id;
     console.log("Селектор");
