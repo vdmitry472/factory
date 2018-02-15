@@ -233,7 +233,7 @@ function ControlElement(id){
     this.turnOn = function(){
         IsTurnOn = true;
     };
-
+    
     this.turnOff = function(){
         IsTurnOn = false;
     };

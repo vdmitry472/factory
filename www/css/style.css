@@ -13,6 +13,7 @@ html {
     font-weight: 300;
     color: #333333;
     height: 100%;
+    width: 100%;
     overflow: hidden;
     background: RGBA(248, 249, 250, 1.00);
 }
@@ -386,9 +387,14 @@ color: RGBA(208, 14, 22, 1.00);
         overflow: scroll;
         height: 50%;
         top: calc(40% + 60px);
-        padding-top: 40px;
+        padding-top: 10px;
 }
-    
+    .list:not(:first-child) {
+    right: -100vw;
+}
+.list.open {
+    transform: translateX(-100vw);
+}
     #viewer {
         background: white;
         position: absolute;
