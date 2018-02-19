@@ -218,14 +218,14 @@ function showElem(id){
     //console.log(viewer.model.selector.getSelection());
     
     // + console.log(elementId);
-    //console.log(viewer.model.getProperties(1394, onSuccessCallback1, onErrorCallback));
+    //console.log(viewer.model.getProperties(1394, onSuccessCallback1, onErrallback));
     var tree;
     //viewer is your viewer object
     viewer.getObjectTree(function (objTree) {
         tree = objTree;
     });
     //console.log(viewer.model.getData().instanceTree);
-    viewer.isolate(elementId);
+    hideAllExepectId(elementId,true);
     console.log(viewer.model.selector.getSelection());
     viewer.fitToView(viewer.model.selector.getSelection(),viewer.model);
     
@@ -247,7 +247,9 @@ function onSuccessCallback1(e){
     //e.properties[35].displayValue = 100;
     //e.properties[35].precision = 2;
 }
-
+function hideAllExepectId(id,type)
+{  array = viewer.model.getFragmentList().fragments.fragId2dbId;  array.forEach( function(a) {if(a!=id){viewer.impl.visibilityManager.setNodeOff(a,type);}})
+}
 function Point(element){
 
 }
