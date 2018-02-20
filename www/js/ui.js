@@ -3,6 +3,27 @@ function openPage(pageID) {
     openedPage=pageID;
     $(".list"+pageID).addClass("open");
 }
+$(document).ready(
+    
+    
+  function () {
+
+$('.on-off').click( function(){
+  if($(this).hasClass("on"))
+  {
+      $(this).removeClass("on");
+      $(this).addClass("off");
+      
+  }
+  else {
+    $(this).removeClass("off");
+      $(this).addClass("on");
+      
+
+  }
+  
+})
+  })
 function date_time(id)
 {
         date = new Date;
