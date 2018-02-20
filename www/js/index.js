@@ -229,7 +229,7 @@ function showElem(id){
     viewer.isolateById(elementId);
     console.log(viewer.model.selector.getSelection());
     viewer.fitToView(viewer.model.selector.getSelection(),viewer.model);
-    
+    viewer.impl.selector.setSelection([elementId],viewer.impl,0);
     //viewer.show(1023);
     
     viewer.getProperties(viewer.model.selector.getSelection()[0],onSuccessCallback1,onErrorCallback);
