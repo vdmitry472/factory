@@ -7,7 +7,6 @@ function openPage(pageID) {
 function back()
 {
     viewer.showAll();
-    
     $(".list"+openedPage).removeClass("open");
     
 }

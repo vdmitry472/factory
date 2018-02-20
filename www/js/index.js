@@ -198,7 +198,7 @@ function getElem(){
     console.log(viewer.model.selector.getSelection());
     viewer.fitToView(viewer.model.selector.getSelection(),viewer.model);
     
-    //viewer.show(1023);
+    // viewer.show(1023);
     
     viewer.getProperties(viewer.model.selector.getSelection()[0],onSuccessCallback1,onErrorCallback);
 
@@ -229,7 +229,7 @@ function showElem(id){
     console.log(viewer.model.selector.getSelection());
     viewer.fitToView(viewer.model.selector.getSelection(),viewer.model);
     
-    //viewer.show(1023);
+    viewer.show(elementId);
     
     viewer.getProperties(viewer.model.selector.getSelection()[0],onSuccessCallback1,onErrorCallback);
 
