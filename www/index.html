@@ -428,7 +428,7 @@ Chart.elements.Arc.prototype.draw = function() {
 var config = {
     type: 'doughnut',
     data: {
-        labels: ['Pink', 'Grey', 'Blue'],
+        labels: ['Свет', 'Кухня', 'Другое'],
         datasets: [
           {
               data: [400, 540, 290],
@@ -488,7 +488,22 @@ window.chart = new Chart(canvas, config);
 
         var label = chartData.labels[idx];
         var value = chartData.datasets[0].data[idx];
-
+        if (label == "Свет")
+        {
+          
+          hideAllExepectId(-1,false)
+          hideAllExepectId(2726,true)
+          
+        }
+        else if (label == "Кухня"){
+          
+          hideAllExepectId(-1,false)
+          hideAllExepectId(3047,true)
+        }
+        else {
+          hideAllExepectId(-1,false)
+          
+        }
         var url = "http://example.com/?label=" + label + "&value=" + value;
         console.log(url);
         alert(url);
