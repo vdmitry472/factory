@@ -40,6 +40,7 @@ function randData(id)
 }
 function back()
 {
+  viewer.autocam.goHome();
     viewer.showAll();
     $(".list"+openedPage).removeClass("open");
     
