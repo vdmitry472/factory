@@ -208,9 +208,9 @@
                         
                         <!-- Canvas for Chart.js -->
                         <canvas id="canvasD" height="200"></canvas>
-                        <span class="s1"></span>
-                        <span class="s2"></span>
-                        <span class="s3"></span>
+                        <span class="s1"  onclick="showStat([2726])"></span>
+                        <span class="s2"  onclick="showStat([3098,3099,3100,3101])"></span>
+                        <span class="s3" onclick="showStat([3098,3099,3100,3101])"></span>
                         <!-- Custom tooltip canvas -->
                         <canvas id="tooltip-canvas" width="150" height="100"></canvas>
                         
@@ -479,6 +479,21 @@ var config = {
 };
 
 window.chart = new Chart(canvas, config);
+
+  canvas.onclick = function(evt) {
+      var activePoints = window.chart.getElementsAtEvent(evt);
+      if (activePoints[0]) {
+        var chartData = activePoints[0]['_chart'].config.data;
+        var idx = activePoints[0]['_index'];
+
+        var label = chartData.labels[idx];
+        var value = chartData.datasets[0].data[idx];
+
+        var url = "http://example.com/?label=" + label + "&value=" + value;
+        console.log(url);
+        alert(url);
+      }
+    };
 
 function addData(chart, label, data) {
     chart.data.labels.push(label);
