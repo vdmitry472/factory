@@ -67,7 +67,11 @@
             </section>
             <section class="back">
                 <div class="list list1" data-id="1">
-                   
+                  <div class="item dashboard" onclick="openPage(2)">
+                      <h1 class="time" id="time"></h1>
+                      <script type="text/javascript">window.onload = date_time('time');</script>
+                      <p>Температура: 21 C</p>
+            </div>
                         <div class="item" onclick="openPage(2)">
                                 <p>Управление</p>
                                 <img src="css/arrow.png" alt="" class="arrow">
