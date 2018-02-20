@@ -225,7 +225,8 @@ function showElem(id){
         tree = objTree;
     });
     //console.log(viewer.model.getData().instanceTree);
-    hideAllExepectId(elementId,true);
+    // hideAllExepectId(elementId,true);
+    viewer.isoloate(elementId);
     console.log(viewer.model.selector.getSelection());
     viewer.fitToView(viewer.model.selector.getSelection(),viewer.model);
     

@@ -352,8 +352,21 @@ color: RGBA(208, 14, 22, 1.00);
   .close {
       height: 20px;
       width: 20px;
-      background: black;
+      text-align: right;
+      margin-top: 10px;
+      padding-right: 20px;
   }
+.close span {
+    height: 2px;
+    width: 25px;
+    position: absolute;
+    transform: rotate(45deg); 
+    background: black;
+    display: inline-block;
+}
+.close span:last-child {
+transform: rotate(-45deg); 
+}
   #tooltip-canvas {
     position: absolute;
     top: 150px;
