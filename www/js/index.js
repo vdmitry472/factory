@@ -226,7 +226,7 @@ function showElem(id){
     });
     //console.log(viewer.model.getData().instanceTree);
     // hideAllExepectId(elementId,true);
-    viewer.isoloate(elementId);
+    viewer.isoloateById(elementId);
     console.log(viewer.model.selector.getSelection());
     viewer.fitToView(viewer.model.selector.getSelection(),viewer.model);
     
