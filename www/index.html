@@ -491,22 +491,18 @@ window.chart = new Chart(canvas, config);
         if (label == "Свет")
         {
           
-          hideAllExepectId(-1,false);
-          hideAllExepectId(2726,true);
+          viewer.isolateById(2726);
           
         }
         else if (label == "Кухня"){
           
-          hideAllExepectId(-1,false);
-          hideAllExepectId(3047,true);
+          viewer.isolateById(3047);
         }
         else {
-          hideAllExepectId(-1,false);
+          viewer.showAll();
           
         }
-        var url = "http://example.com/?label=" + label + "&value=" + value;
-        console.log(url);
-        alert(url);
+       
       }
     };
 
