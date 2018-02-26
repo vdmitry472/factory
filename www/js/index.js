@@ -296,3 +296,21 @@ function showElems(elementId){
     viewer.impl.selector.setSelection(elementId,viewer.impl,0);
     viewer.fitToView(viewer.model.selector.getSelection(),viewer.model);
 }
+
+
+var TestArrayOfLights = [3098, 3099, 3100];
+
+function createSelect(selectName){
+    var objSel = document.getElementById(selectName); 
+
+    TestArrayOfLights.forEach(function(item, i, arr) {
+        objSel.options[objSel.options.length] = new Option(item, "str" + i);
+    });
+
+    function changeOption(){
+        var selectedOption = objSel.options[objSel.selectedIndex];
+        console.log("Вы выбрали: " + selectedOption.text);
+    }
+
+    objSel.addEventListener("change", changeOption);
+}

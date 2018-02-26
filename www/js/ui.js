@@ -69,6 +69,7 @@ function back()
 }
 function openModal() {
     $(".modal").addClass("open");
+    createSelect("addSelect");
 }
 
 function closeModal() {
