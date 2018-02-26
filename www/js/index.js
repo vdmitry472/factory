@@ -314,3 +314,103 @@ function createSelect(selectName){
 
     objSel.addEventListener("change", changeOption);
 }
+
+/////////////////////////
+// JSON
+/////////////////////////
+
+function getCookie(name) {
+  var matches = document.cookie.match(new RegExp(
+      "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+  ));
+  return matches ? decodeURIComponent(matches[1]) : undefined;
+}
+
+function deleteCookie(name) {
+  setCookie(name, "", {
+      expires: -1
+  })
+}
+
+function setCookie(cname, cvalue, exdays) {
+  var d = new Date();
+  d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+  var expires = "expires=" + d.toUTCString();
+  document.cookie = cname + "=" + cvalue + "; path=/; " + expires;
+
+}
+
+function checkList()
+{
+  if (getCookie('list') == undefined) {
+    setCookie('list', '{"elements":[]}', 7);
+  }
+}
+
+function addElementToList(id, state, category,value)
+{
+  var list = getCookie("list");
+  console.log(list);  
+  list = JSON.parse(list);
+  console.log(list);
+  list.elements.push({id:id, state:state, category:category, value:value});
+  console.log(list);
+  
+  setCookie("list", JSON.stringify(list,""), 7);
+
+}
+
+
+function editElementStateFromList(id, state)
+{
+  var list = getCookie("list");
+  list = JSON.parse(list);
+  console.log(list); 
+  for (var i = 0; i < Object.keys(list.elements).length; i++) {
+    if (list.elements[i].id == id) {
+      list.elements[i].state=state;
+      console.log(list); 
+      setCookie("list", JSON.stringify(list,""), 7);
+      return true;
+      
+    }
+  }
+  return false; 
+}
+
+function editElementValueFromList(id, value)
+{
+  var list = getCookie("list");
+  list = JSON.parse(list);
+  console.log(list); 
+  for (var i = 0; i < Object.keys(list.elements).length; i++) {
+    if (list.elements[i].id == id) {
+      list.elements[i].value=value;
+      console.log(list); 
+      setCookie("list", JSON.stringify(list,""), 7);
+      return true;
+      
+    }
+  }
+  return false;
+}
+
+function deleteElementFromList(id)
+{
+  var list = getCookie("list");
+  list = JSON.parse(list);
+
+  for (var i = 0; i < Object.keys(list.elements).length; i++) {
+    if (list.elements[i].id == id) {
+      delete list.elements[i];
+      list = JSON.stringify(list);
+      list = list.replace(',null', '');
+      list = list.replace('null,', '');
+      list = list.replace('null', '');
+      setCookie("list", list, 7);
+      return true;
+      
+    }
+  }
+  return false;
+}
