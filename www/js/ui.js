@@ -63,6 +63,7 @@ function back()
 {
   viewer.autocam.goHome();
     viewer.showAll();
+    viewer.impl.selector.setSelection(0,viewer.impl,0);
     $(".list"+openedPage).removeClass("open");
     
 }
