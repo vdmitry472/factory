@@ -303,7 +303,10 @@ var TestArrayOfLights = [3098, 3099, 3100];
 function createSelect(selectName){
     var objSel = document.getElementById(selectName); 
 
-    TestArrayOfLights.forEach(function(item, i, arr) {
+    var list = getCookie("list");
+    list = JSON.parse(list);
+    
+    list.elements.forEach(function(item, i, arr) {
         objSel.options[objSel.options.length] = new Option(item, "str" + i);
     });
 
