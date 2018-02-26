@@ -8,6 +8,12 @@ $(document).ready(
     
   function () {
 
+/////////////////////
+// JSON
+////////////////////
+
+checkList();
+
 $('.on-off').click( function(){
   if($(this).hasClass("on"))
   {
