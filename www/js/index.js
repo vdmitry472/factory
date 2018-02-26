@@ -303,11 +303,18 @@ var TestArrayOfLights = [3098, 3099, 3100];
 function createSelect(selectName){
     var objSel = document.getElementById(selectName); 
 
+    for (r = objSel.options.length - 1; r >= 0; r--) {
+        objSel.options.remove(r);
+    }
+
     var list = getCookie("list");
     list = JSON.parse(list);
     
     list.elements.forEach(function(item, i, arr) {
-        objSel.options[objSel.options.length] = new Option(item, "str" + i);
+        if (item.value == -1){
+            objSel.options[objSel.options.length] = new Option(item.id + " " + item.category, "str" + i);
+        }
+        
     });
 
     function changeOption(){
