@@ -441,7 +441,7 @@ function setDiagramData(){
     list.elements.forEach(function(item, i, arr) {
         if(arrayOfLabels.indexOf(item.category) == -1){
             arrayOfLabels[arrayOfLabels.length] = item.category;
-            arrayOfValue[arrayOfLabels.length] = item.value;
+            arrayOfValue[arrayOfLabels.length-1] = item.value;
         }else{
             arrayOfValue[arrayOfLabels.indexOf(item.category)] += item.value
         }
