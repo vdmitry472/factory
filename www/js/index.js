@@ -435,8 +435,8 @@ function setDiagramData(){
     var list = getCookie("list");
     list = JSON.parse(list);
     
-    var arrayOfLabels;
-    var arrayOfValue;
+    var arrayOfLabels = [];
+    var arrayOfValue = [];
 
     list.elements.forEach(function(item, i, arr) {
         if(arrayOfLabels.indexOf(item.category) == -1){
