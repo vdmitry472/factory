@@ -446,5 +446,5 @@ function setDiagramData(){
     });
 
     console.log(arrayOfLabels,arrayOfValue);
-    addData(config, arrayOfLabels, arrayOfValue);
+    //addData(config, arrayOfLabels, arrayOfValue);
 }
