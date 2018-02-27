@@ -424,3 +424,30 @@ function deleteElementFromList(id)
   }
   return false;
 }
+
+// ДИАГРАММА
+
+function checkArrayOfLabels(arr,){
+
+}
+
+function setDiagramData(){
+    var list = getCookie("list");
+    list = JSON.parse(list);
+    
+    var arrayOfLabels;
+    var arrayOfValue;
+
+    list.elements.forEach(function(item, i, arr) {
+        if(arrayOfLabels.indexOf(item.category) == -1){
+            arrayOfLabels[arrayOfLabels.length] = item.category;
+            arrayOfValue[arrayOfLabels.length] = item.value;
+        }else{
+            arrayOfValue[arrayOfLabels.indexOf(item.category)] += item.value
+        }
+
+    });
+
+    console.log(arrayOfLabels,arrayOfValue);
+    //config.data.datasets[0].data = [1,2,3];
+}
