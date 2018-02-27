@@ -427,9 +427,6 @@ function deleteElementFromList(id)
 
 // ДИАГРАММА
 
-function checkArrayOfLabels(arr,){
-
-}
 
 function setDiagramData(){
     var list = getCookie("list");
@@ -449,5 +446,5 @@ function setDiagramData(){
     });
 
     console.log(arrayOfLabels,arrayOfValue);
-    //config.data.datasets[0].data = [1,2,3];
+    addData(config, arrayOfLabels, arrayOfValue);
 }
