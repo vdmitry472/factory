@@ -76,7 +76,7 @@ function back()
 }
 function openModal() {
     $(".modal").addClass("open");
-    createSelect("addSelect");
+    createSelect("DeviceSelector");
 }
 
 function closeModal() {

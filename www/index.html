@@ -54,6 +54,20 @@
                     <span></span>
                     <span></span>
                 </div>
+                <div class="menu">
+                  <div class="close">
+                    <span></span>
+                    <span></span>
+                  </div>
+                  <div>
+                    <h1>Меню</h1>
+                    <a href="http://autodesk6.vuztc.ru">Выйти</a>
+                    
+                    <a href="http://autodesk6.vuztc.ru">О проекте</a>
+                    <p>Контакты: <br>
+                    Денис Петраков<br>
+                    Артемий Устюхин</p>
+                  </div>
                 <h1>
                     HOMIE
                 </h1>
@@ -116,11 +130,16 @@
                 </div>
                 <div class="list list2" data-id="2">
                     <p onclick="back()"><i></i>Назад</p>
-                    <!-- <div class="item on-off on">
+                    <div class="item on-off on hidden" id="DeviceTemplate">
                       
-                                <p onclick="showElem(3099)" >Лампа (1 этаж 99)</p>
+                                <p onclick="" ></p>
     
-                        </div> -->
+                        </div>
+                        <div class="item on-off on" class="">
+                      
+                            <p onclick="showElem(3099)" >Лампа</p>
+
+                    </div>
                         <div class="item on-off off">
                       
                             <p onclick="showElem(2727)" >Холодильник</p>
@@ -128,20 +147,20 @@
                     </div>
                     <div class="item on-off on">
                       
-                        <p onclick="showElem(3098)" >Лампа (1 этаж 98)</p>
+                        <p onclick="showElem(3098)" >Лампа</p>
 
                 </div>
                 <div class="item on-off on">
                       
-                    <p onclick="showElem(3100)" >Лампа (2 этаж 00)</p>
+                    <p onclick="showElem(3100)" >Лампа</p>
 
             </div>
-            <!-- <div class="item on-off on">
+            <div class="item on-off on">
                       
-                <p onclick="showElem(3101)" >Лампа (2 этаж 01)</p>
+                <p onclick="showElem(3101)" >Лампа</p>
 
-        </div> -->
-                    <div class="item">
+        </div>
+                    <div class="item" id="addDevice">
                             <div class="button">
                                     <p onclick="openModal()" >Добавить</p>
         
@@ -154,9 +173,19 @@
                             <p>Свет в 7:00</p>
                             <img src="css/arrow.png" alt="" class="arrow">
                     </div>
+                    <div class="item hidden" id="automatizationTemplate">
+                        <p>Свет в 7:00</p>
+                        <img src="css/arrow.png" alt="" class="arrow">
+                </div>
                     <div class="item">
                             <p>Свет в 18:00</p>
                             <img src="css/arrow.png" alt="" class="arrow">
+                    </div>
+                    <div class="item" id="addAutomatization">
+                        <div class="button">
+                                <p onclick="openModalAuto()"  >Добавить</p>
+    
+                        </div>
                     </div>
                 </div>
                 <div class="list list4" data-id="4">
@@ -245,12 +274,37 @@
                     <h3>
                         Добавить утройство
                     </h3>
-                    <input type="text" name="" placeholder="Название" id="">
-                    <select name=""  id="addSelect">
+                    <input type="text" name="" placeholder="Название" id="DeviceName">
+                    <select name=""  id="DeviceSelector">
                         <option value="">Источник</option>
-                        
+                        <option value="1234">Лампа</option>
                     </select>
-                    <input type="submit" value="Добавить">
+                    <input type="submit" value="Добавить" onclick="addDevice()">
+                </form>
+            </div>
+            <div class="modalAuto">
+                <form action="">
+                    <div class="close" onclick="closeModalAuto()">
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <h3>
+                        Автоматизация
+                    </h3>
+                    <input type="text" name="" placeholder="Название" id="DeviceName">
+                    <select name=""  id="triggerSelector">
+                        <option value="">Триггер</option>
+                        <option value="1234">Лампа</option>
+                      
+                    </select>
+                    <select name=""  id="autoSelector">
+                        <option value="">Источник</option>
+                        <option value="1234">Лампа</option>
+                        <option value="">Port 8886</option>
+                        <option value="">Port 8884</option>
+                        <option value="">Port 8880</option>
+                    </select>
+                    <input type="button" value="Добавить" onclick="addAutomatization()" >
                 </form>
             </div>
     <!--NavBar-->
