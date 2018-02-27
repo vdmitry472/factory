@@ -3,6 +3,57 @@ function openPage(pageID) {
     openedPage=pageID;
     $(".list"+pageID).addClass("open");
 }
+function addDevice()
+{
+  if ($("#DeviceSelector").val()!="" && $("#DeviceName").val()!="")
+  {
+  var Template = document.getElementById("DeviceTemplate");
+  var container = document.getElementById("list2");
+    var newElement= Template.cloneNode(true);
+    newElement.classList.remove("hidden");
+  //   newElement.setAttribute("post-id", json[key].postId);      
+
+    newElement.children[0].innerText = $("#DeviceName").val();
+
+    newElement.addEventListener("click", function()
+  {
+    showElem($("#DeviceSelector").val());
+  });
+    container.appendChild(newElement);
+    // newElement.insertBefore($("addDevice"));
+    $(".modal").removeClass("open");
+}
+else
+{
+  alert("Заполните все поля");
+}
+}
+function addAutomatization()
+{
+  if ($("#DeviceSelector").val()!="" && $("#DeviceName").val()!="")
+  {
+  var Template = document.getElementById("AutomatizationTemplate");
+  var container = document.getElementById("list2");
+    var newElement= Template.cloneNode(true);
+    newElement.classList.remove("hidden");
+  //   newElement.setAttribute("post-id", json[key].postId);      
+
+    newElement.children[0].innerText = $("#DeviceName").val();
+
+    newElement.addEventListener("click", function()
+  {
+    showElem($("#DeviceSelector").val());
+  });
+    // container.appendChild(newElement);
+    newElement.insertBefore(document.getElementById("addAutomatization"));
+    $(".modal-auto").removeClass("open");
+}
+else
+{
+  alert("Заполните все поля");
+}
+}
+
 $(document).ready(
     
     
@@ -28,6 +79,16 @@ $('.on-off').click( function(){
       
 
   }
+
+})
+$('.burger').click( function(){
+      $(".menu").addClass("open");
+      
+  
+})
+$('.menu .close').click( function(){
+  $(".menu").removeClass("open");
+  
   
 })
   })
@@ -81,6 +142,14 @@ function openModal() {
 
 function closeModal() {
     $(".modal").removeClass("open");
+}
+
+function openModalAuto() {
+  $(".modalAuto").addClass("open");
+}
+
+function closeModalAuto() {
+  $(".modalAuto").removeClass("open");
 }
 
 
