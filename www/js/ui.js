@@ -13,6 +13,7 @@ $(document).ready(
 ////////////////////
 
 checkList();
+if (pageID = 4) setDiagramData();
 
 $('.on-off').click( function(){
   if($(this).hasClass("on"))
