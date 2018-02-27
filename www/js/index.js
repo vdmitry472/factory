@@ -446,5 +446,11 @@ function setDiagramData(){
     });
 
     console.log(arrayOfLabels,arrayOfValue);
+
+    window.chart.data.labels = arrayOfLabels;
+    window.chart.data.datasets[0].data = arrayOfValue;
+    window.chart.update();
+
     //addData(config, arrayOfLabels, arrayOfValue);
+
 }
