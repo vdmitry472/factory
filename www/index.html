@@ -521,7 +521,7 @@ window.chart = new Chart(canvas, config);
         var arrayOfValue = [];
 
         list.elements.forEach(function(item, i, arr) {
-          if (item.category == label) arrayOfValue[arrayOfLabels.length] = item.value;
+          if (item.category == label) arrayOfValue[arrayOfValue.length] = item.value;
           /*if(arrayOfLabels.indexOf(item.category) == -1){
             arrayOfLabels[arrayOfLabels.length] = item.category;
             arrayOfValue[arrayOfLabels.length-1] = item.value;
