@@ -8,7 +8,7 @@ function addDevice()
   if ($("#DeviceSelector").val()!="" && $("#DeviceName").val()!="")
   {
   var Template = document.getElementById("DeviceTemplate");
-  var container = document.getElementById("list2");
+  var container = document.getElementById("newElements");
     var newElement= Template.cloneNode(true);
     newElement.classList.remove("hidden");
   //   newElement.setAttribute("post-id", json[key].postId);      
@@ -45,7 +45,7 @@ function addAutomatization()
   if ($("#DeviceSelector").val()!="" && $("#DeviceName").val()!="")
   {
   var Template = document.getElementById("AutomatizationTemplate");
-  var container = document.getElementById("list2");
+  var container = document.getElementById("newElements");
     var newElement= Template.cloneNode(true);
     newElement.classList.remove("hidden");
   //   newElement.setAttribute("post-id", json[key].postId);      
@@ -56,8 +56,8 @@ function addAutomatization()
   {
     showElem(parseInt($("#DeviceSelector").val()));
   });
-    // container.appendChild(newElement);
-    newElement.insertBefore(document.getElementById("addAutomatization"));
+    container.appendChild(newElement);
+    // newElement.insertBefore(document.getElementById("addAutomatization"));
     $(".modal-auto").removeClass("open");
 }
 else
