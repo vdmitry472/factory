@@ -18,6 +18,7 @@ function addDevice()
     newElement.addEventListener("click", function()
   {
     showElem($("#DeviceSelector").val());
+    alert($("#DeviceSelector").val());
   });
     container.appendChild(newElement);
     // newElement.insertBefore($("addDevice"));
