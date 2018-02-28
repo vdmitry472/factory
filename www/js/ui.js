@@ -42,15 +42,15 @@ else
 }
 function addAutomatization()
 {
-  if ($("#DeviceSelector").val()!="" && $("#DeviceName").val()!="")
+  if ($("#DeviceSelector").val()!="" && $("#DeviceName1").val()!="")
   {
-  var Template = document.getElementById("AutomatizationTemplate");
+  var Template = document.getElementById("automatizationTemplate");
   var container = document.getElementById("newElements");
     var newElement= Template.cloneNode(true);
     newElement.classList.remove("hidden");
   //   newElement.setAttribute("post-id", json[key].postId);      
 
-    newElement.children[0].innerText = $("#DeviceName").val();
+    newElement.children[0].innerText = $("#DeviceName1").val();
 
     newElement.addEventListener("click", function()
   {
