@@ -353,7 +353,7 @@ function setCookie(cname, cvalue, exdays) {
 function checkList()
 {
   if (getCookie('list') == undefined) {
-    setCookie('list', '{"elements":[]}', 7);
+    setCookie('list', '{"elements":[:[{"id":3098,"state":"off","category":"1floor","value":15},{"id":3099,"state":"off","category":"1floor","value":-1},{"id":3101,"state":"off","category":"2floor","value":-1},{"id":3100,"state":"off","category":"2floor","value":-1},{"id":3102,"state":"off","category":"2floor","value":40},{"id":3103,"state":"off","category":"2floor","value":-1},{"id":3104,"state":"off","category":"2floor","value":12},{"id":3125,"state":"off","category":"2floor","value":-1},{"id":2738,"state":"off","category":"kitchen","value":10},{"id":2729,"state":"off","category":"kitchen","value":15},{"id":2748,"state":"off","category":"kitchen","value":-1},{"id":2770,"state":"off","category":"kitchen","value":-1},{"id":3203,"state":"off","category":"kitchen","value":-1},{"id":2846,"state":"off","category":"kitchen","value":-1}]}', 7);
   }
 }
 
