@@ -400,7 +400,7 @@ transform: rotate(-45deg);
   
   
   
-.modal {
+.modal,.modalAuto {
     position: fixed;
     z-index: 9999;
     top:0;
@@ -415,11 +415,11 @@ transform: rotate(-45deg);
     width: 100%;
     background: rgba(255,255,255,0.9); 
 }
-.modal.open {
+.modal.open,.modalAuto.open {
     opacity: 1;
     visibility: visible;
 }
-.modal > * {
+.modal > * ,.modalAuto > *{
     background: white;
     width: 400px;
     box-shadow: 0 0 20px rgba(0,0,0,0.1);
@@ -427,24 +427,24 @@ transform: rotate(-45deg);
     
     
 }
-.modal > * > * {
+.modal > * > *,.modalAuto >* >* {
     display: block;
     width: 100%;
     margin-bottom: 10px;
 }
-.modal input[type=text]
+.modal input[type=text],.modalAuto input[type=text]
 {
     padding: 10px 20px;
     font-size: 14px;
 }
-.modal select {
+.modal select,.modalAuto select{
     font-size: 14px;
         -webkit-appearance: none;
 
 margin-bottom: 20px;
     padding: 10px 20px;
 }
-.modal input[type=button]
+.modal input[type=button],.modalAuto input[type=button]
 {
     padding: 10px 20px;
     font-size: 14px;
