@@ -18,15 +18,15 @@ function addDevice()
     newElement.children[0].addEventListener("click", function()
   {
     showElem(parseInt($("#DeviceSelector").val()));
-    if($(this).parent.hasClass("on"))
+    if($(this).parent().hasClass("on"))
     {
-      $(this).parent.removeClass("on");
-      $(this).parent.addClass("off");
+      $(this).parent().removeClass("on");
+      $(this).parent().addClass("off");
       
   }
   else {
-    $(this).parent.removeClass("off");
-      $(this).parent.addClass("on");
+    $(this).parent().removeClass("off");
+      $(this).parent().addClass("on");
       
 
   }
