@@ -59,7 +59,7 @@ function addAutomatization()
     newElement.classList.remove("hidden");
   //   newElement.setAttribute("post-id", json[key].postId);      
 
-    newElement.children[0].innerText = $("#DeviceName1").val() + " в "+$("DateTime").val();
+    newElement.children[0].innerText = $("#DeviceName1").val() + " в "+$("#DateTime").val();
 
   
     container.appendChild(newElement);
