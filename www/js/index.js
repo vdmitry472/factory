@@ -312,7 +312,7 @@ function createSelect(selectName){
     
     list.elements.forEach(function(item, i, arr) {
         if (item.value == -1){
-            objSel.options[objSel.options.length] = new Option(item.id + " " + item.category, "str" + i);
+            objSel.options[objSel.options.length] = new Option(item.id + " " + item.category, item.id );
         }
         
     });
