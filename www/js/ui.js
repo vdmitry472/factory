@@ -64,7 +64,7 @@ function addAutomatization()
   
     container.appendChild(newElement);
     // newElement.insertBefore(document.getElementById("addAutomatization"));
-    $(".modal-auto").removeClass("open");
+    $(".modalAuto").removeClass("open");
 }
 else
 {
