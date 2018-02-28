@@ -51,7 +51,7 @@ function showLabel()
 
 function addAutomatization()
 {
-  if ($("#DeviceSelector").val()!="" && $("#DeviceName1").val()!="")
+  if ($("#DeviceName1").val()!="")
   {
   var Template = document.getElementById("automatizationTemplate");
   var container = document.getElementById("newElements2");
