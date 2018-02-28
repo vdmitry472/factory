@@ -17,17 +17,16 @@ function addDevice()
 
     newElement.children[0].addEventListener("click", function()
   {
-    showElem($("#DeviceSelector").val());
-    alert($("#DeviceSelector").val());
-    if($(this).hasClass("on"))
-  {
-      $(this).removeClass("on");
-      $(this).addClass("off");
+    showElem(parseInt($("#DeviceSelector").val()));
+    if($(this).parent.hasClass("on"))
+    {
+      $(this).parent.removeClass("on");
+      $(this).parent.addClass("off");
       
   }
   else {
-    $(this).removeClass("off");
-      $(this).addClass("on");
+    $(this).parent.removeClass("off");
+      $(this).parent.addClass("on");
       
 
   }
@@ -55,7 +54,7 @@ function addAutomatization()
 
     newElement.addEventListener("click", function()
   {
-    showElem($("#DeviceSelector").val());
+    showElem(parseInt($("#DeviceSelector").val()));
   });
     // container.appendChild(newElement);
     newElement.insertBefore(document.getElementById("addAutomatization"));
