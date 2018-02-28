@@ -15,10 +15,22 @@ function addDevice()
 
     newElement.children[0].innerText = $("#DeviceName").val();
 
-    newElement.addEventListener("click", function()
+    newElement.children[0].addEventListener("click", function()
   {
     showElem($("#DeviceSelector").val());
     alert($("#DeviceSelector").val());
+    if($(this).hasClass("on"))
+  {
+      $(this).removeClass("on");
+      $(this).addClass("off");
+      
+  }
+  else {
+    $(this).removeClass("off");
+      $(this).addClass("on");
+      
+
+  }
   });
     container.appendChild(newElement);
     // newElement.insertBefore($("addDevice"));
