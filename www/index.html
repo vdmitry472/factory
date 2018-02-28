@@ -299,19 +299,22 @@
                         Автоматизация
                     </h3>
                     <input type="text" name="" placeholder="Название" id="DeviceName1">
-                    <select name=""  id="triggerSelector">
+                    <select name="" onchange="showLabel()"  id="triggerSelector">
                         <option value="">Триггер</option>
-                        <option value="1234">Лампа</option>
+                        <option value="Время">Время</option>
+                        <option value="Событие">Событие</option>
                       
                     </select>
                     <select name=""  id="autoSelector">
                         <option value="">Источник</option>
-                        <option value="1234">Лампа</option>
-                        <option value="">Port 8886</option>
-                        <option value="">Port 8884</option>
-                        <option value="">Port 8880</option>
+                        <option value="1234">Лампа 1</option>
+                        <option value="1234">Холодильник</option>
+                        <option value="1234">Лампа 3</option>
+                        <option value="1234">Микроволновка</option>
+                        <option value="1234">Лампа 2</option>
                     </select>
-                    <input type="time" name="" id="DateTime">
+                    <label class="hidden" id="triggerLabel">Время</label>
+                    <input type="time" class="hidden" name="" id="DateTime">
                     <input type="button" value="Добавить" onclick="addAutomatization()" >
                 </form>
             </div>

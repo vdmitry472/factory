@@ -40,22 +40,28 @@ else
   alert("Заполните все поля");
 }
 }
+function showLabel()
+{
+  $("#triggerLabel").removeClass("hidden");
+  document.getElementById("triggerLabel").innerText = $("#triggerSelector").val();
+  $("#DateTime").removeClass("hidden");
+  
+
+}
+
 function addAutomatization()
 {
   if ($("#DeviceSelector").val()!="" && $("#DeviceName1").val()!="")
   {
   var Template = document.getElementById("automatizationTemplate");
-  var container = document.getElementById("newElements");
+  var container = document.getElementById("newElements2");
     var newElement= Template.cloneNode(true);
     newElement.classList.remove("hidden");
   //   newElement.setAttribute("post-id", json[key].postId);      
 
-    newElement.children[0].innerText = $("#DeviceName1").val();
+    newElement.children[0].innerText = $("#DeviceName1").val() + " в "+$("DateTime").val();
 
-    newElement.addEventListener("click", function()
-  {
-    showElem(parseInt($("#DeviceSelector").val()));
-  });
+  
     container.appendChild(newElement);
     // newElement.insertBefore(document.getElementById("addAutomatization"));
     $(".modal-auto").removeClass("open");
