@@ -1,22 +1,36 @@
-var JSON_DATA = JSON.parse('../Json.json');
+function getJsonData(){
+    var jqXHR = $.ajax({
+        url: "../SensorsData.json",
+        async: false});
 
-class worker {
-	id;
-	name;
-	access_level; 
+    return $.parseJSON(jqXHR.responseText);
 }
 
-class master [worker]{
+var JSON_DATA = getJsonData();
+
+//var JSON_DATA = JSON.parse("../../Json.json");
+
+
+
+/*
+class worker {
+	id
+	name
+	access_level; 
+}
+*/
+
+class master {
 	conctructor (id,name,access_level){
-		this.id = id
+		this.id = id;
 		this.name = name;
 		this.access_level = access_level;
 	}
 
 	addSensorValue(id,value){
-		for each (sensor in JSON_DATA.Sensors){
-			if (sensor.id == id){
-
+		for (var i = 0; i < JSON_DATA.Sensors.length; i++){
+			if (JSON_DATA.Sensors[i].id == id){
+				
 			}
 		}
 	}
@@ -27,7 +41,7 @@ class master [worker]{
 
 }
 
-class manager [worker]{
+class manager {
 	conctructor (id,name,access_level){
 		this.id = id
 		this.name = name;
@@ -35,21 +49,18 @@ class manager [worker]{
 	}
 
 	ChangeValveValueById(id,value){
-		for (i = 0; i < JSON_DATA.Valve.length; i++){
+		for (var i = 0; i < JSON_DATA.Valve.length; i++){
 			if (JSON_DATA.Valve[i].id == id){
 				JSON_DATA.Valve[i].value = value;
 			}
 		}
+		console.log(JSON_DATA);
 	}
 
 
 }
 
 class sensor {
-	id;
-	type;
-	value;
-
 	conctructor(id, type,value){
 		this.id = id;
 		this.type = type;
@@ -66,9 +77,6 @@ class sensor {
 }
 
 class valve {
-	id;
-	active;
-
 	conctructor(id){
 		this.id = id;
 		this.active = 0;
@@ -84,12 +92,6 @@ class valve {
 }
 
 class triger{
-	type;
-	minCritical;
-	minNormal 
-	maxNormal;
-	maxCritical;
-
 	conctructor(type,minCritical,minNormal,maxNormal,maxCritical){
 		this.type = type;
 		this.minCritical = minCritical;
