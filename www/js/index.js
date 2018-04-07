@@ -20,13 +20,39 @@
 var viewer;
 var options = {
     env: 'AutodeskProduction',
-    getAccessToken: getForgeToken
+    getAccessToken: getForgeToken,
+    document: './model/Plant/0/0.svf'
 }
-
+// var myViewerDiv = document.getElementById('viewer');
+// var extensionsConfig = {
+//     extensions: ['ModelNotes']
+// };
+// var viewer = new Autodesk.Viewing.Private.GuiViewer3D(myViewerDiv, extensionsConfig);
+// var options = {
+//     'env': 'Local',
+//     'document': './Content/Model/0.svf'
+// };
+// Autodesk.Viewing.Initializer(options, function () {
+//     viewer.start(options.document, options);
+// });
 var documentId = 'urn:dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6bW9kZWwyMDE4LTAyLTA5LTIxLTAyLTE2LWQ0MWQ4Y2Q5OGYwMGIyMDRlOTgwMDk5OGVjZjg0MjdlL0hvdXNlJTIwRGVzaWduLnJ2dA';
 
 Autodesk.Viewing.Initializer(options, function onInitialized() {
-    Autodesk.Viewing.Document.load(documentId, onDocumentLoadSuccess, onDocumentLoadFailure);
+
+    var viewerDiv = document.getElementById('viewer');
+
+    ///////////////USE ONLY ONE OPTION AT A TIME/////////////////////////
+
+    /////////////////////// Headless Viewer /////////////////////////////
+    // viewer = new Autodesk.Viewing.Viewer3D(viewerDiv);
+    //////////////////////////////////////////////////////////////////////
+
+    //////////////////Viewer with Autodesk Toolbar///////////////////////
+    viewer = new Autodesk.Viewing.Private.GuiViewer3D(viewerDiv);
+    //////////////////////////////////////////////////////////////////////
+
+    viewer.start(options.document, onLoadModelSuccess, onLoadModelError);
+    // Autodesk.Viewing.Document.load(options.document, onDocumentLoadSuccess, onDocumentLoadFailure);
 });
 
 /**
@@ -64,7 +90,7 @@ function onDocumentLoadSuccess(doc) {
     viewer = new Autodesk.Viewing.Private.GuiViewer3D(viewerDiv);
     //////////////////////////////////////////////////////////////////////
 
-    viewer.start(svfUrl, modelOptions, onLoadModelSuccess, onLoadModelError);
+    viewer.start(options.document, onLoadModelSuccess, onLoadModelError);
 }
 
 

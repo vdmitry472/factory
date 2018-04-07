@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>HOMIE</title>
+    <title>Factory</title>
 
     <!-- Common packages: JQuery & Bootstrap -->
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
@@ -38,8 +38,8 @@
     <!-- The Viewer JS -->
     <script src="/js/oauth.js"></script>
     <script src="/js/index.js"></script>
-    <script src="/js/ui.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.js"></script>
+    <!-- <script src="/js/ui.js"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.js"></script> -->
 
 
 </head>
@@ -70,7 +70,7 @@
                   </div>
                   </div>
                 <h1>
-                    HOMIE
+                    Factory 
                 </h1>
                 <div class="reload">
         
@@ -80,7 +80,7 @@
             <section id="viewer">
         
             </section>
-            <section class="back">
+            <!-- <section class="back">
                 <div class="list list1" data-id="1">
                   <div class="item dashboard" onclick="openPage(2)">
                       <h1 class="time" id="time"></h1>
@@ -99,33 +99,7 @@
                                 <p>Статистика</p>
                                 <img src="css/arrow.png" alt="" class="arrow">
                         </div>
-                        <!-- <div class="item">
-                            <div class="button">
-                                    <p onclick="Poly()"  >К-во полигонов!</p>
-        
-                            </div>
-                        </div>
-                            
-                            <div class="item">
-                            <div class="button">
-                                    <p onclick="Boom()">Бум!!!</p>
-        
-                            </div>
-                        </div>
-                            
-                            <div class="item">
-                            <div class="button">
-                                    <p onclick="getElem()" >Искать элемент по тегу!</p>
-        
-                            </div>
-                        </div>
-                            <div class="item">
-                            <div class="button">
-                                    <p onclick="SearchByTXT('item_wallQWERTY')" >Поиск!</p>
-        
-                            </div>
-                            </div> -->
-                              
+                     
                         </div>
                    
                 </div>
@@ -197,20 +171,13 @@
                 </div>
                 <div class="list list4" data-id="4">
                     <p onclick="back()"><i></i>Назад</p>
-                    <!-- <div class="mainChart">
-                        <canvas id="salesData"></canvas>
-                       
-                      </div> -->
                       <div class="chart-card">
-                        <!-- Custom information -->
                         <div class="about">
                           <h3>Температура</h3>
                         </div>
                         
-                        <!-- Canvas for Chart.js -->
                         <canvas id="canvas"></canvas>
                         
-                        <!-- Custom Axis -->
                         <div class="axis">
                           <div class="tick">
                             <span class="day-number">10</span>
@@ -251,27 +218,23 @@
                       </div>
 
                       <div class="chart-card-2">
-                        <!-- Custom information -->
                         <div class="about">
                           <h3>Электричество</h3>
                         </div>
                         
-                        <!-- Canvas for Chart.js -->
                         <canvas id="canvasD" height="200"></canvas>
                         <span class="s1"  onclick="showElems([2726])"></span>
                         <span class="s2"  onclick="showElems([3098,3099,3100,3101])"></span>
                         <span class="s3" onclick="showElems([3098,3099])"></span>
-                        <!-- Custom tooltip canvas -->
                         <canvas id="tooltip-canvas" width="150" height="100"></canvas>
                         
-                        <!-- Reload button -->
                         <button type="button" id="reload" class="btn-reload">
                           <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.4 61.2"><style>.st0{fill:#AAAAAA;}</style><title>59 all</title><path class="st0" d="M57.6 0h8.7c2.8 0 5 2.2 5 5v51.1c0 2.8-2.2 5-5 5h-8.7c-2.8 0-5-2.2-5-5V5c0-2.7 2.2-5 5-5zM5 24.9h8.7c2.8 0 5 2.2 5 5v26.2c0 2.8-2.2 5-5 5H5c-2.8 0-5-2.2-5-5V29.9c0-2.8 2.2-5 5-5zM31.4 17.8h8.7c2.8 0 5 2.2 5 5v33.4c0 2.8-2.2 5-5 5h-8.7c-2.8 0-5-2.2-5-5V22.8c0-2.8 2.3-5 5-5z"/></svg>
                         </button>
                       </div>
                 </div>
 
-            </section>
+            </section> -->
             <div class="modal">
                 <form action="">
                     <div class="close" onclick="closeModal()">
@@ -355,266 +318,6 @@
     </footer> -->
 <script>
 
-var canvas = document.getElementById("canvas");
-
-// Apply multiply blend when drawing datasets
-var multiply = {
-  beforeDatasetsDraw: function(chart, options, el) {
-    chart.ctx.globalCompositeOperation = 'multiply';
-  },
-  afterDatasetsDraw: function(chart, options) {
-    chart.ctx.globalCompositeOperation = 'source-over';
-  },
-};
-
-// Gradient color - this week
-var gradientThisWeek = canvas.getContext('2d').createLinearGradient(0, 0, 0, 150);
-gradientThisWeek.addColorStop(0, '#5555FF');
-gradientThisWeek.addColorStop(1, '#9787FF');
-
-// Gradient color - previous week
-var gradientPrevWeek = canvas.getContext('2d').createLinearGradient(0, 0, 0, 150);
-gradientPrevWeek.addColorStop(0, '#FF55B8');
-gradientPrevWeek.addColorStop(1, '#FF8787');
-
-var config = {
-    type: 'line',
-    data: {
-        labels: ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN", "MON"],
-        datasets: [
-          {
-              label: 'Temperature',
-              data: [18, 26, 14, 22, 12, 20, 12, 18, 10],
-              fill: false,
-              borderColor: 'rgba(255, 255, 255, 0.2)',
-              borderWidth: 2,
-              pointBackgroundColor: 'transparent',
-              pointBorderColor: '#FFFFFF',
-              pointBorderWidth: 3,
-              pointHoverBorderColor: 'rgba(255, 255, 255, 0.2)',
-              pointHoverBorderWidth: 10,
-              lineTension: 0,
-          }
-        ]
-    },
-    options: {
-    	responsive: false,
-      elements: { 
-        point: {
-          radius: 6,
-          hitRadius: 6, 
-          hoverRadius: 6 
-        } 
-      },
-      legend: {
-        display: false,
-      },
-      tooltips: {
-      	backgroundColor: 'transparent',
-        displayColors: false,
-        bodyFontSize: 14,
-        callbacks: {
-          label: function(tooltipItems, data) { 
-            return tooltipItems.yLabel + '°C';
-          }
-        }
-      },
-      scales: {
-        xAxes: [{
-          display: false,
-        }],
-        yAxes: [{
-          display: false,
-          ticks: {
-            beginAtZero: true,
-          },
-        }]
-      }
-    },
-    plugins: [multiply],
-};
-
-window.chart = new Chart(canvas, config);
-var canvas = document.getElementById("canvasD");
-var tooltipCanvas = document.getElementById("tooltip-canvas");
-
-var gradientBlue = canvas.getContext('2d').createLinearGradient(0, 0, 0, 150);
-gradientBlue.addColorStop(0, '#5555FF');
-gradientBlue.addColorStop(1, '#9787FF');
-
-var gradientRed = canvas.getContext('2d').createLinearGradient(0, 0, 0, 150);
-gradientRed.addColorStop(0, '#FF55B8');
-gradientRed.addColorStop(1, '#FF8787');
-
-var gradientGrey = canvas.getContext('2d').createLinearGradient(0, 0, 0, 150);
-gradientGrey.addColorStop(0, '#888888');
-gradientGrey.addColorStop(1, '#AAAAAA');
-
-window.arcSpacing = 0.15;
-window.segmentHovered = false;
-
-function textInCenter(value, label) {
-  var ctx = tooltipCanvas.getContext('2d');
-  ctx.clearRect(0, 0, tooltipCanvas.width, tooltipCanvas.height)
-  
-	ctx.restore();
-    
-  // Draw value
-  ctx.fillStyle = '#333333';
-  ctx.font = '24px sans-serif';
-  ctx.textBaseline = 'middle';
-
-  // Define text position
-  var textPosition = {
-    x: Math.round((tooltipCanvas.width - ctx.measureText(value).width) / 2),
-    y: tooltipCanvas.height / 2,
-  };
-
-  ctx.fillText(value, textPosition.x, textPosition.y);
-
-  // Draw label
-  ctx.fillStyle = '#AAAAAA';
-  ctx.font = '8px sans-serif';
-
-  // Define text position
-  var labelTextPosition = {
-    x: Math.round((tooltipCanvas.width - ctx.measureText(label).width) / 2),
-    y: tooltipCanvas.height / 2,
-  };
-
-  ctx.fillText(label, labelTextPosition.x, labelTextPosition.y - 20);
-  ctx.save();
-}
-
-Chart.elements.Arc.prototype.draw = function() {
-  var ctx = this._chart.ctx;
-  var vm = this._view;
-  var sA = vm.startAngle;
-  var eA = vm.endAngle;
-
-  ctx.beginPath();
-  ctx.arc(vm.x, vm.y, vm.outerRadius, sA + window.arcSpacing, eA - window.arcSpacing);
-  ctx.strokeStyle = vm.backgroundColor;
-  ctx.lineWidth = vm.borderWidth;
-  ctx.lineCap = 'round';
-  ctx.stroke();
-  ctx.closePath();
-};
-
-var config = {
-    type: 'doughnut',
-    data: {
-        labels: ['Свет', 'Кухня', 'Другое'],
-        datasets: [
-          {
-              data: [400, 540, 290],
-              backgroundColor: [
-              	gradientRed,
-                gradientGrey,
-                gradientBlue,
-              ],
-          }
-        ]
-    },
-    options: {
-    		cutoutPercentage: 80,
-    		elements: {
-        	arc: {
-          	borderWidth: 12,
-          },
-        },
-        legend: {
-        	display: false,
-        },
-        animation: {
-        	onComplete: function(animation) {
-          	if (!window.segmentHovered) {
-              var value = this.config.data.datasets[0].data.reduce(function(a, b) { 
-                return a + b;
-              }, 0);
-              var label = 'T O T A L';
-
-              textInCenter(value, label);
-            }
-          },
-        },
-        tooltips: {
-        	enabled: false,
-        	custom: function(tooltip) {
-          	if (tooltip.body) {
-              var line = tooltip.body[0].lines[0],
-              	parts = line.split(': ');
-              textInCenter(parts[1], parts[0].split('').join(' ').toUpperCase());
-              window.segmentHovered = true;
-            } else {
-            	window.segmentHovered = false;
-            }
-          },
-        },
-    },
-};
-
-window.chart = new Chart(canvas, config);
-
-  canvas.onclick = function(evt) {
-      var activePoints = window.chart.getElementsAtEvent(evt);
-      if (activePoints[0]) {
-        var chartData = activePoints[0]['_chart'].config.data;
-        var idx = activePoints[0]['_index'];
-
-        var label = chartData.labels[idx];
-        var value = chartData.datasets[0].data[idx];
-        /*if (label == "Свет")
-        {
-          //viewer.impl.selector.setSelection([3047],viewer.impl,0)
-          
-          //viewer.isolateById(3047);
-          showElems([3098,3099]);
-        }
-        else if (label == "Кухня"){
-          //viewer.impl.selector.setSelection([2726],viewer.impl,0)
-        
-          //viewer.isolateById(2726);
-
-            
-         
-        }*/
-
-        var list = getCookie("list");
-        list = JSON.parse(list);
-    
-        var arrayOfValue = [];
-
-        list.elements.forEach(function(item, i, arr) {
-          if (item.category == label) arrayOfValue[arrayOfValue.length] = item.id;
-          /*if(arrayOfLabels.indexOf(item.category) == -1){
-            arrayOfLabels[arrayOfLabels.length] = item.category;
-            arrayOfValue[arrayOfLabels.length-1] = item.value;
-          }else{
-            arrayOfValue[arrayOfLabels.indexOf(item.category)] += item.value
-          }*/
-        });
-
-        showElems(arrayOfValue);
-        /*else {
-          viewer.showAll();
-          
-        }*/
-       
-      }
-    };
-
-function addData(chart, label, data) {
-    chart.data.labels.push(label);
-    chart.data.datasets.forEach((dataset) => {
-        dataset.data.push(data);
-    });
-    chart.update();
-}
-
-document.getElementById('reload').addEventListener('click', function() {
-	addData(window.chart, 'TEST', 300);
-});
 
 
 </script>
