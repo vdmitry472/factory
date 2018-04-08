@@ -226,9 +226,9 @@ function addSensorValueByIdToBrouserList(sensorId,value){
 	var sensor;
 	for (var i=0; i<list.Sensor.length; i++){
 		if (list.Sensor[i].id == sensorId){
-			value.forEach( function (element) {
-				list.Sensor[i].data.push(element);
-			});	
+			//value.foreach( function (element) {
+				list.Sensor[i].data.push(value);
+			//});	
 			browserList_Sensor = ToJson(list);
 			break;
 		}
