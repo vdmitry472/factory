@@ -1,3 +1,4 @@
+'use strict';
 
 var Sensors_list = '{"Sensors":[{"id":1,"type":"P","data":[1,2,3,4,5]},{"id":2,"type":"P","data":[1,2,3,4,5]}]}';
 var Valve_list = '{"Valve":[{"id":1,"value":0},{"id":2,"value":1}]}';
@@ -30,7 +31,7 @@ function getJsonData(){
 }
 */
 
-var JSON_DATA = getJsonData();
+//var JSON_DATA = getJsonData();
 
 function loadJson(file){
 
@@ -49,7 +50,7 @@ function loadJson(file){
 
 
 class master {
-	conctructor (id,name,access_level){
+	constructor(id,name,access_level){
 		this.id = id;
 		this.name = name;
 		this.access_level = access_level;
@@ -70,7 +71,7 @@ class master {
 }
 
 class manager {
-	conctructor (id,name,access_level){
+	constructor(id,name,access_level){
 		this.id = id
 		this.name = name;
 		this.access_level = access_level;
@@ -90,16 +91,20 @@ class manager {
 }
 
 class sensor {
-	conctructor(id, type){
+	
+	constructor(id, type){
 		this.id = id;
 		this.type = type;
 		this.value = 0;	
+		console.log(this.id);
+		console.log(this.type);
+		console.log(this.value);
 	}
 
 	show(){
 		console.log(this.id);
-		console.log(this.id);
-		console.log(this.id);
+		console.log(this.type);
+		console.log(this.value);
 	}
 
 	addToCookie(){
@@ -123,7 +128,7 @@ class sensor {
 }
 
 class valve {
-	conctructor(id){
+	constructor(id){
 		this.id = id;
 		this.active = 0;
 	}
@@ -145,7 +150,7 @@ class valve {
 }
 
 class triger{
-	conctructor(type,id,minCritical,minNormal,maxNormal,maxCritical){
+	constructor(type,id,minCritical,minNormal,maxNormal,maxCritical){
 		this.type = type;
 		this.id = id
 		this.minCritical = minCritical;
