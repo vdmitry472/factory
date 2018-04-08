@@ -117,6 +117,13 @@ class valve {
 		this.active = 0;
 	}
 
+	addToCookie(){
+		var list = ToList(Valve_list);
+		console.log(list);
+		list.Valve.push({id:this.id, value:this.value});
+		setCookie("list", ToJson(list), 7);
+	}
+
 	on(){
 		active = "1";
 	}
@@ -134,6 +141,13 @@ class triger{
 		this.minNormal = minNormal;
 		this.maxNormal = maxNormal;
 		this.maxCritical = maxCritical;
+	}
+
+	addToCookie(){
+		var list = ToList(Triger_list);
+		console.log(list);
+		list.Triger.push({type:this.type, id:this.id, minCritical:this.minCritical, minNormal:this.minNormal, maxNormal:this.maxNormal, maxCritical:this.maxCritical});
+		setCookie("list", ToJson(list), 7);
 	}
 }
 
