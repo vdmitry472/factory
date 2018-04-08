@@ -19,7 +19,7 @@
 'use strict';
 
 var app = require('./server/server');
-
+const fs = require('fs');
 // start server
 var server = app.listen(app.get('port'), function () {
   // if (process.env.FORGE_CLIENT_ID == null || process.env.FORGE_CLIENT_SECRET == null)
@@ -28,3 +28,4 @@ var server = app.listen(app.get('port'), function () {
   console.log('Starting at ' + (new Date()).toString());
   console.log('Server listening on port ' + server.address().port);
 });
+

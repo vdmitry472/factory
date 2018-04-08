@@ -1,3 +1,26 @@
+
+var Sensors_list = '{"Sensors":[{"id":1,"type":"P","data":[1,2,3,4,5]},{"id":2,"type":"P","data":[1,2,3,4,5]}]}';
+var Valve_list = '{"Valve":[{"id":1,"value":0},{"id":2,"value":1}]}';
+var Triger_list = '{"Triger":[{"type":"T","id":1,"minCritical":10,"minNormal":30,"maxNormal":70,"maxCritical":90}]}';
+
+
+function ToList(Big_Json){
+	return JSON.parse(Big_Json);
+}
+
+function ToJson(list){
+	return JSON.stringify(list,"");
+}
+
+function setCookie(cname, cvalue, exdays) {
+  var d = new Date();
+  d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+  var expires = "expires=" + d.toUTCString();
+  document.cookie = cname + "=" + cvalue + "; path=/; " + expires;
+
+}
+
+
 function getJsonData(){
     var jqXHR = $.ajax({
         url: "../SensorsData.json",
@@ -8,17 +31,21 @@ function getJsonData(){
 
 var JSON_DATA = getJsonData();
 
-//var JSON_DATA = JSON.parse("../../Json.json");
+function loadJson(file){
 
+	//const fs = require('fs');
+	// write to a new file named 2pac.txt
+	writeFile('SensorsData.json', file, (err) => {  
+    // throws an error, you could also catch it here
+    if (err) throw err;
 
-
-/*
-class worker {
-	id
-	name
-	access_level; 
+    // success case, the file was saved
+    console.log('Lyric saved!');
+	});
 }
-*/
+
+
+
 
 class master {
 	conctructor (id,name,access_level){
@@ -55,6 +82,7 @@ class manager {
 			}
 		}
 		console.log(JSON_DATA);
+		loadJson(JSON_DATA)
 	}
 
 
@@ -65,6 +93,13 @@ class sensor {
 		this.id = id;
 		this.type = type;
 		this.value = 0;	
+	}
+
+	addToCookie(){
+		var list = ToList(Sensors_list);
+		console.log(list);
+		list.Sensors.push({id:this.id, type:this.state, data:[this.value]});
+		setCookie("list", ToJson(list), 7);
 	}
 
 	getValue(){
@@ -92,11 +127,29 @@ class valve {
 }
 
 class triger{
-	conctructor(type,minCritical,minNormal,maxNormal,maxCritical){
+	conctructor(type,id,minCritical,minNormal,maxNormal,maxCritical){
 		this.type = type;
+		this.id = id
 		this.minCritical = minCritical;
 		this.minNormal = minNormal;
 		this.maxNormal = maxNormal;
 		this.maxCritical = maxCritical;
 	}
 }
+
+function CheckValueByTrigerId(trigerId, value){
+	var triger;
+	// 0 - всё плохо
+	// 1 - предупреждение
+	// 2 - все в норме
+
+	if ( (value>triger.maxCritical) || (value<minCritical)){
+		return 0
+	}else if ((value>triger.maxNormal) || (value<minNormal)){
+		return 1
+	}else{
+		return 2
+	}
+}
+
+
