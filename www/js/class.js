@@ -109,6 +109,10 @@ class sensor {
 	setValue(value){
 		this.value = value;
 	}
+
+	addValue(value){
+
+	}
 }
 
 class valve {
@@ -156,6 +160,15 @@ function CheckValueByTrigerId(trigerId, value){
 	// 0 - всё плохо
 	// 1 - предупреждение
 	// 2 - все в норме
+	var list = ToList(Triger_list);
+	console.log(list);
+	for (var i=0; i<list.Triger.length; i++){
+		if (list.Triger[i].id == trigerId){
+			triger = list.Triger[i];
+			break;
+		}
+	}
+
 
 	if ( (value>triger.maxCritical) || (value<minCritical)){
 		return 0
