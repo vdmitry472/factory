@@ -1,9 +1,9 @@
 'use strict';
 
-var browserList_Sensor = {Sensor:[{id:1,type:"P",data:[1,2,3,4,5]}]};
-var browserList_Valve = {Valve:[{id:1,value:0}]};
-var browserList_Triger = {Triger:[{type:"T",id:1,minCritical:10,minNormal:30,maxNormal:70,maxCritical:90}]};
-
+var browserList_Sensor = {};
+var browserList_Valve = {};
+var browserList_Triger = {};
+var browserList_Logs = {};
 
 function ToList(Big_Json){
 	return JSON.parse(Big_Json);
@@ -107,7 +107,7 @@ class sensor {
 	}
 
 	addToBrowserList(){
-		if (browserList_Sensor){
+		if (browserList_Sensor == null){
 			browserList_Sensor.Sensor.push({id:this.id, type:this.type, data:[this.value]});
 		}else{
 			browserList_Sensor = {Sensor:[{id:this.id, type:this.type, data :[this.value]}]};
@@ -218,22 +218,12 @@ function CheckValueByTrigerId(trigerId, value){
 	}
 }
 
-/*
-function addSensorValueByIdToCookie(sensorId,value){
-	var list = ToList(getCookie("sensor"));
-	var sensor;
-	for (var i=0; i<list.Sensor.length; i++){
-		if (list.Sensor[i].id == sensorId){
-			//value.forEach( function (element) {
-				list.Sensor[i].data.push(value);
-			//});	
-			
-			setCookie("sensor", ToJson(list), 7);
-			break;
-		}
-	}
+
+function addAllToCookie(){
+	setCookie("log", ToJson(browserList_Logs), 7);
+	setCookie("sensor", ToJson(browserList_Sensor), 7);
 }
-*/
+
 
 function addSensorValueByIdToBrouserList(sensorId,value){
 	var sensor;
@@ -247,9 +237,19 @@ function addSensorValueByIdToBrouserList(sensorId,value){
 	}
 }
 
+function addLog(id,type,text){
+	var log = {id:id, type:type, text:text};
+	if (browserList_Logs == null){
+		browserList_Logs.Log.push(log);
+	}else{
+		log = {Log:[{id:id, type:type, text:text}]}
+		browserList_Logs = log;
+	}
+}
+
 function getLastNElems(id,n){
 	var arr = [];
-	var list = ToList(getCookie(sensor));
+	var list = ToList(getCookie("sensor"));
 	for (var i=0; i<list.Sensor.length; i++){
 		if (list.Sensor[i].id == id){
 			var sensor = list.Sensor[i];
@@ -267,6 +267,8 @@ function getLastNElems(id,n){
 }
 
 
-var s = new sensor(3,"T");
 
+
+var s = new sensor(1,"T");
+setInterval(addAllToCookie, 10 * 1000);
 
