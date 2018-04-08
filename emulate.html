@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+  <head>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.0/socket.io.js"></script>
+
+    
+  </head>
+
+  <body>
+        <div class="sensor">
+                <h1>Sensor</h1>
+        
+                <h1>input max:</h1> <input id = "input_max" type="text"> 
+                <h1>input min:</h1> <input id = "input_min" type="text">
+        <br>
+                <input value="On" id="on" type="button" onclick="sensor_on(false);">
+                <input value="Off" id="off" type="button" onclick="sensor_on(true);">
+                <!-- <script src="main.js"></script> -->
+        
+            </div>
+
+            <script>
+                    var socket = io();
+                    var flag = true;
+                  var timerId;
+                  
+                  function sensor_on(trigger) {
+                  
+                  
+                      // true
+                      if (trigger) {
+                          setTimeout(function() {
+                            clearInterval(timerId);
+                          }, 0);		
+                      }
+                  
+                      if (!trigger) {
+                  
+                      timerId = setInterval(function() {
+                  
+                          var max = document.getElementById("input_max").value;
+                          var min = document.getElementById("input_min").value;
+                         
+                          
+                        socket.emit('value', Math.random() * (max - min) + min);
+                          
+                         
+                      }, 3000);	
+                      }
+                  }
+                  </script>
+  </body>
