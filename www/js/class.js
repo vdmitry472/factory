@@ -1,8 +1,8 @@
 'use strict';
 
-var browserList_Sensor = '{"Sensor":[{"id":1,"type":"P","data":[1,2,3,4,5]},{"id":2,"type":"P","data":[1,2,3,4,5]}]}';
-var browserList_Valve = '{"Valve":[{"ibd":1,"value":0},{"id":2,"value":1}]}';
-var browserList_Triger = '{"Triger":[{"type":"T","id":1,"minCritical":10,"minNormal":30,"maxNormal":70,"maxCritical":90}]}';
+var browserList_Sensor = {Sensor:[{id:1,type:"P",data:[1,2,3,4,5]}]};
+var browserList_Valve = {Valve:[{id:1,value:0}]};
+var browserList_Triger = {Triger:[{type:"T",id:1,minCritical:10,minNormal:30,maxNormal:70,maxCritical:90}]};
 
 
 function ToList(Big_Json){
@@ -97,12 +97,21 @@ class sensor {
 		console.log(this.type);
 		console.log(this.value);
 		this.addToCookie();
+		this.addToBrowserList();
 	}
 
 	show(){
 		console.log(this.id);
 		console.log(this.type);
 		console.log(this.value);
+	}
+
+	addToBrowserList(){
+		if (browserList_Sensor){
+			browserList_Sensor.Sensor.push({id:this.id, type:this.type, data:[this.value]});
+		}else{
+			browserList_Sensor = {Sensor:[{id:this.id, type:this.type, data :[this.value]}]};
+		}
 	}
 
 	addToCookie(){
@@ -209,6 +218,7 @@ function CheckValueByTrigerId(trigerId, value){
 	}
 }
 
+/*
 function addSensorValueByIdToCookie(sensorId,value){
 	var list = ToList(getCookie("sensor"));
 	var sensor;
@@ -223,20 +233,39 @@ function addSensorValueByIdToCookie(sensorId,value){
 		}
 	}
 }
+*/
 
 function addSensorValueByIdToBrouserList(sensorId,value){
-	var list = ToList(browserList_Sensor);
 	var sensor;
-	for (var i=0; i<list.Sensor.length; i++){
-		if (list.Sensor[i].id == sensorId){
-			//value.foreach( function (element) {
-				list.Sensor[i].data.push(value);
-			//});	
-			browserList_Sensor = ToJson(list);
+	for (var i=0; i<browserList_Sensor.Sensor.length; i++){
+		if (browserList_Sensor.Sensor[i].id == sensorId){
+			
+			browserList_Sensor.Sensor[i].data.push(value);
+			
 			break;
 		}
 	}
 }
+
+function getLastNElems(id,n){
+	var arr = [];
+	var list = ToList(getCookie(sensor));
+	for (var i=0; i<list.Sensor.length; i++){
+		if (list.Sensor[i].id == id){
+			var sensor = list.Sensor[i];
+			console.log(sensor);
+			if (n>sensor.data.length) n=sensor.data.length;
+			console.log(n);
+			console.log(sensor.data.length);
+			for (var j = sensor.data.length-n; j<sensor.data.length; j++){
+				
+				arr[arr.length] = sensor.data[j];
+			}
+		}
+	}
+	return arr;
+}
+
 
 var s = new sensor(3,"T");
 
