@@ -20,7 +20,7 @@ function setCookie(cname, cvalue, exdays) {
 
 }
 
-
+/*
 function getJsonData(){
     var jqXHR = $.ajax({
         url: "../SensorsData.json",
@@ -28,6 +28,7 @@ function getJsonData(){
 
     return $.parseJSON(jqXHR.responseText);
 }
+*/
 
 var JSON_DATA = getJsonData();
 
@@ -89,10 +90,16 @@ class manager {
 }
 
 class sensor {
-	conctructor(id, type,value){
+	conctructor(id, type){
 		this.id = id;
 		this.type = type;
 		this.value = 0;	
+	}
+
+	show(){
+		console.log(this.id);
+		console.log(this.id);
+		console.log(this.id);
 	}
 
 	addToCookie(){
