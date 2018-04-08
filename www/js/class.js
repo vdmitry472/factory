@@ -1,8 +1,8 @@
 'use strict';
 
-var Sensors_list = '{"Sensors":[{"id":1,"type":"P","data":[1,2,3,4,5]},{"id":2,"type":"P","data":[1,2,3,4,5]}]}';
-var Valve_list = '{"Valve":[{"id":1,"value":0},{"id":2,"value":1}]}';
-var Triger_list = '{"Triger":[{"type":"T","id":1,"minCritical":10,"minNormal":30,"maxNormal":70,"maxCritical":90}]}';
+var browserList_Sensor = '{"Sensor":[{"id":1,"type":"P","data":[1,2,3,4,5]},{"id":2,"type":"P","data":[1,2,3,4,5]}]}';
+var browserList_Valve = '{"Valve":[{"ibd":1,"value":0},{"id":2,"value":1}]}';
+var browserList_Triger = '{"Triger":[{"type":"T","id":1,"minCritical":10,"minNormal":30,"maxNormal":70,"maxCritical":90}]}';
 
 
 function ToList(Big_Json){
@@ -21,17 +21,14 @@ function setCookie(cname, cvalue, exdays) {
 
 }
 
-/*
-function getJsonData(){
-    var jqXHR = $.ajax({
-        url: "../SensorsData.json",
-        async: false});
-
-    return $.parseJSON(jqXHR.responseText);
+function getCookie(name) {
+  var matches = document.cookie.match(new RegExp(
+      "(?:^|; )" + name + "=([^;]*)"
+  ));
+  return matches ? decodeURIComponent(matches[1]) : undefined;
 }
-*/
 
-//var JSON_DATA = getJsonData();
+
 
 function loadJson(file){
 
@@ -57,8 +54,8 @@ class master {
 	}
 
 	addSensorValue(id,value){
-		for (var i = 0; i < JSON_DATA.Sensors.length; i++){
-			if (JSON_DATA.Sensors[i].id == id){
+		for (var i = 0; i < JSON_DATA.Sensor.length; i++){
+			if (JSON_DATA.Sensor[i].id == id){
 				
 			}
 		}
@@ -108,10 +105,15 @@ class sensor {
 	}
 
 	addToCookie(){
-		var list = ToList(Sensors_list);
-		console.log(list);
-		list.Sensors.push({id:this.id, type:this.state, data:[this.value]});
-		setCookie("list", ToJson(list), 7);
+		var list;
+		if (getCookie("sensor")){
+			list = ToList(getCookie("sensor"));
+			list.Sensor.push({id:this.id, type:this.type, data:[this.value]});
+		}else{
+			list = {Sensor:[{id:this.id, type:this.type, data :[this.value]}]};
+		}
+		
+		setCookie("sensor", ToJson(list), 7);
 	}
 
 	getValue(){
@@ -134,10 +136,15 @@ class valve {
 	}
 
 	addToCookie(){
-		var list = ToList(Valve_list);
-		console.log(list);
-		list.Valve.push({id:this.id, value:this.value});
-		setCookie("list", ToJson(list), 7);
+		var list;
+		if (getCookie("valve")){
+			list = ToList(getCookie("valve"));
+			list.Valve.push({id:this.id, value:this.value});
+		}else{
+			list = {Valve:[{id:this.id, value:this.value}]};
+		}
+		
+		setCookie("valve", ToJson(list), 7);
 	}
 
 	on(){
@@ -160,10 +167,14 @@ class triger{
 	}
 
 	addToCookie(){
-		var list = ToList(Triger_list);
-		console.log(list);
-		list.Triger.push({type:this.type, id:this.id, minCritical:this.minCritical, minNormal:this.minNormal, maxNormal:this.maxNormal, maxCritical:this.maxCritical});
-		setCookie("list", ToJson(list), 7);
+		var list;
+		if (getCookie("triger")){
+			list = ToList(getCookie("triger"));
+			list.Triger.push({type:this.type, id:this.id, minCritical:this.minCritical, minNormal:this.minNormal, maxNormal:this.maxNormal, maxCritical:this.maxCritical});
+		}else{
+			list = {Triger:[{type:this.type, id:this.id, minCritical:this.minCritical, minNormal:this.minNormal, maxNormal:this.maxNormal, maxCritical:this.maxCritical}]};
+		}
+		setCookie("triger", ToJson(list), 7);
 	}
 }
 
@@ -172,8 +183,12 @@ function CheckValueByTrigerId(trigerId, value){
 	// 0 - всё плохо
 	// 1 - предупреждение
 	// 2 - все в норме
+	/*
 	var list = ToList(Triger_list);
 	console.log(list);
+	*/
+	var list = ToList(getCookie("triger"));
+
 	for (var i=0; i<list.Triger.length; i++){
 		if (list.Triger[i].id == trigerId){
 			triger = list.Triger[i];
@@ -182,13 +197,44 @@ function CheckValueByTrigerId(trigerId, value){
 	}
 
 
-	if ( (value>triger.maxCritical) || (value<minCritical)){
+	if ( (value>triger.maxCritical) || (value<triger.minCritical)){
 		return 0
-	}else if ((value>triger.maxNormal) || (value<minNormal)){
+	}else if ((value>triger.maxNormal) || (value<triger.minNormal)){
 		return 1
 	}else{
 		return 2
 	}
 }
+
+function addSensorValueByIdToCookie(sensorId,value){
+	var list = ToList(getCookie("sensor"));
+	var sensor;
+	for (var i=0; i<list.Sensor.length; i++){
+		if (list.Sensor[i].id == sensorId){
+			value.forEach( function (element) {
+				list.Sensor[i].data.push(element);
+			});	
+			
+			setCookie("sensor", ToJson(list), 7);
+			break;
+		}
+	}
+}
+
+function addSensorValueByIdToBrouserList(sensorId,value){
+	var list = ToList(browserList_Sensor);
+	var sensor;
+	for (var i=0; i<list.Sensor.length; i++){
+		if (list.Sensor[i].id == sensorId){
+			value.forEach( function (element) {
+				list.Sensor[i].data.push(element);
+			});	
+			browserList_Sensor = ToJson(list);
+			break;
+		}
+	}
+}
+
+
 
 
