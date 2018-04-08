@@ -96,6 +96,7 @@ class sensor {
 		console.log(this.id);
 		console.log(this.type);
 		console.log(this.value);
+		this.addToCookie();
 	}
 
 	show(){
@@ -133,15 +134,16 @@ class valve {
 	constructor(id){
 		this.id = id;
 		this.active = 0;
+		this.addToCookie();
 	}
 
 	addToCookie(){
 		var list;
 		if (getCookie("valve")){
 			list = ToList(getCookie("valve"));
-			list.Valve.push({id:this.id, value:this.value});
+			list.Valve.push({id:this.id, value:this.active});
 		}else{
-			list = {Valve:[{id:this.id, value:this.value}]};
+			list = {Valve:[{id:this.id, value:this.active}]};
 		}
 		
 		setCookie("valve", ToJson(list), 7);
@@ -164,6 +166,7 @@ class triger{
 		this.minNormal = minNormal;
 		this.maxNormal = maxNormal;
 		this.maxCritical = maxCritical;
+		this.addToCookie();
 	}
 
 	addToCookie(){
@@ -211,9 +214,9 @@ function addSensorValueByIdToCookie(sensorId,value){
 	var sensor;
 	for (var i=0; i<list.Sensor.length; i++){
 		if (list.Sensor[i].id == sensorId){
-			value.forEach( function (element) {
-				list.Sensor[i].data.push(element);
-			});	
+			//value.forEach( function (element) {
+				list.Sensor[i].data.push(value);
+			//});	
 			
 			setCookie("sensor", ToJson(list), 7);
 			break;
@@ -235,6 +238,6 @@ function addSensorValueByIdToBrouserList(sensorId,value){
 	}
 }
 
-
+var s = new sensor(3,"T");
 
 
