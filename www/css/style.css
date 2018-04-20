@@ -17,6 +17,104 @@ html {
     overflow: hidden;
     background: RGBA(248, 249, 250, 1.00);
 }
+.push {
+    position: fixed;
+    z-index: 9999;
+    right: 50px;
+    opacity: 0;
+    background: white;
+    padding: 25px 50px;
+    top: 25px;
+    transform: translateY(-100px); 
+    padding-left: 25px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    transition: 0.5s ease-in;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1); 
+}
+.push.active {
+        transform: translateY(0px); 
+	opacity: 1;
+
+}
+.push p {
+    font-size: 16px;
+    font-weight: 400;
+}
+.account {
+    display: flex;
+    align-items: center;
+}
+.account p {
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.account span{
+        font-size: 12px;
+	margin-left: 25px;
+    text-decoration: underline;
+    cursor: pointer;
+
+}
+
+.account div {  border-radius: 50%;
+    height: 25px;
+    width: 25px;
+    display: inline-block;
+    margin-right: 10px;
+    background: #F2F2F2;
+    border: 1px solid #B4B3B4;}
+.red > div {
+    border-radius: 50%;
+    height: 25px;
+    width: 25px;
+    display: inline-block;
+    margin-right: 25px;
+    background: rgba(239, 51, 56, 0.79);
+    border: 3px solid #CD2C30;
+}
+
+.yellow > div {
+    border-radius: 50%;
+    height: 25px;
+    width: 25px;
+    display: inline-block;
+    margin-right: 25px;
+    background: #FED250;
+    border: 3px solid #FED250;
+}
+
+.green > div {
+    border-radius: 50%;
+    height: 25px;
+    width: 25px;
+    display: inline-block;
+    margin-right: 25px;
+    background: #68D873;
+    border: 3px solid #68D873;
+}
+.list h1,.notifications h1 {
+    margin-left: 50px;
+    margin-bottom: 20px;
+}
+
+.alert {
+    background: white;
+    padding: 20px 50px;
+    top: 25px;
+    margin: 7px 15px;
+    padding-left: 25px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1); 
+}
+.alert p {
+    font-size: 16px;
+    font-weight: 400;
+}
 
 
 #nav {
@@ -55,20 +153,33 @@ html {
     background: white;
     width: 20px;
 }
+.notifications {
+     position: absolute;
+     right: 0;
+     background: RGBA(248, 249, 250, 1.00);
+     width: 600px;
+     top: calc(50% + 60px);
+     height: calc(50% - 60px);
+     overflow: scroll;
+     padding-top: 20px;
+     transition: 0.3s ease;
+}
 
 .list {
     position: absolute;
     right: 0;
     background: RGBA(248, 249, 250, 1.00);
-    width: 400px;
+    width: 600px;
     top: 60px;
-    height: calc(100% - 60px);
+    height: calc(50% - 60px);
     overflow: scroll;
     padding-top: 20px;
     transition: 0.3s ease;
 }
 .list:not(:first-child) {
-    right: -400px;
+    right: -600px;
+    height: 100vh;
+    z-index: 9;
 }
 .list.open {
     transform: translateX(-100%);
@@ -85,23 +196,26 @@ html {
 .list .item {
     /* base: */
     cursor: pointer;
-background: #FFFFFF;
-box-shadow: 0 10px 20px 0 rgba(0,0,0,0.10);
-border-radius: 6px;
-width: 80%;
-margin: 10px auto;
-position: relative;
+    background: #FFFFFF;
+    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.10);
+    border-radius: 6px;
+    width: 40%;
+    display: inline-block;
+    margin: 10px 0;
+    margin-left: 5%;
+    position: relative;
 }
 .list .item p {
-    padding: 20px 33px;
+    padding: 25px 25px;
     text-decoration: none !important;
+    font-weight: 400;
+    font-size: 16px;
 }
 .list .item .arrow {
     position: absolute;
-    right: 33px;
-
+    right: 20px;
     height: 100%;
-width: 30px;
+    width: 30px;
     object-fit: contain;
     top: 0px;
 }
@@ -397,10 +511,30 @@ transform: rotate(-45deg);
   .btn-reload:hover {
     opacity: 1;
   }
+#notification-details .close {
+    position: absolute;
+    right: -25px;
+    top:-25px;
+}
   
-  
-  
-.modal,.modalAuto {
+#notification-details > div {
+    background: white;
+    padding: 35px;
+    position: relative;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+#notification-details p {
+    margin-top: 25px;
+    font-size: 14px;
+    
+}
+#notification-details h3{
+	display: flex;
+    font-size: 20px;
+    align-items: center;
+}
+.modal,.modalAuto,#notification-details{
     position: fixed;
     z-index: 9999;
     top:0;
@@ -415,7 +549,7 @@ transform: rotate(-45deg);
     width: 100%;
     background: rgba(255,255,255,0.9); 
 }
-.modal.open,.modalAuto.open {
+.modal.open,.modalAuto.open,#notification-details.open {
     opacity: 1;
     visibility: visible;
 }

@@ -38,13 +38,27 @@
     <!-- The Viewer JS -->
     <script src="/js/oauth.js"></script>
     <script src="/js/index.js"></script>
-    <!-- <script src="/js/ui.js"></script> -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.js"></script> -->
+    <script src="/js/ui.js"></script>
+    <script src="js/class.js"></script>
+    <script src="js/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+
 
 
 </head>
 
 <body>
+        <div class="push red">
+            <div>
+
+            </div>
+            <p>
+                Новое уведомление
+            </p>
+        </div>
         <section id="nav">
                 <div>
         
@@ -72,255 +86,305 @@
                 <h1>
                     Factory 
                 </h1>
-                <div class="reload">
-        
+                <div class="account">
+                   <div></div>
+                   <p>Петров А.С.</p>
+                   <span>Выход</span>
                 </div>
             </div>
             </section>
             <section id="viewer">
         
             </section>
-            <!-- <section class="back">
+            <section class="back">
+              
                 <div class="list list1" data-id="1">
-                  <div class="item dashboard" onclick="openPage(2)">
-                      <h1 class="time" id="time"></h1>
-                      <script type="text/javascript">window.onload = date_time('time');</script>
-                      <p>Температура: 21 C</p>
-            </div>
-                        <div class="item" onclick="openPage(2)">
-                                <p>Управление</p>
-                                <img src="css/arrow.png" alt="" class="arrow">
+                  
+                  <div class="item" onclick="openPage(2)">
+                    <p>Управление</p>
+                    <img src="css/arrow.png" alt="" class="arrow">                    
+                  </div>
+                  <div class="item"  onclick="openPage(3)">
+                      <p>Триггеры</p>
+                      <img src="css/arrow.png" alt="" class="arrow">                    
+                    </div>
+                    <div class="item"  onclick="openPage(4)">
+                        <p>История</p>
+                        <img src="css/arrow.png" alt="" class="arrow">                    
+                      </div>
+                      <div class="item" onclick="openPage(5)">
+                          <p>Все уведомления</p>
+                          <img src="css/arrow.png" alt="" class="arrow">                    
                         </div>
-                        <div class="item" onclick="openPage(3)">
-                                <p>Автоматизация</p>
-                                <img src="css/arrow.png" alt="" class="arrow">
+                        <div class="item" onclick="openPage(6)">
+                            <p>Показатели</p>
+                            <img src="css/arrow.png" alt="" class="arrow">                    
                         </div>
-                        <div class="item" onclick="openPage(4)">
-                                <p>Статистика</p>
-                                <img src="css/arrow.png" alt="" class="arrow">
-                        </div>
-                     
-                        </div>
-                   
+                       
+                          <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+
                 </div>
-                <div class="list list2" id='list2' data-id="2">
-                    <p onclick="back()"><i></i>Назад</p>
-                    <div class="item on-off on hidden" id="DeviceTemplate">
+                <div class="list list5 " id="all-notifications" data-id="5">
+                    <h2  onclick="back()">Назад</h2>
+
+                </div>
+                <div class="list list2" data-id="2">
+                    <h2 onclick="back()">Назад</h2>
+                    <div class="item" onclick="showElem(2523)">
+                          <p>
+                              Датчик Темпратуры 1
+                          </p>
+                    </div>
+                    <div class="item" onclick="showElem(2537)">
+                        <p>
+                            Датчик Темпратуры 2
+                        </p>
+                  </div>
+                  <div class="item" onclick="showElem(2097)">
+                      <p>
+                          Датчик Темпратуры 3
+                      </p>
+                </div>
+                <div class="item" onclick="showElem(2097)">
+                    <p>
+                        Вентель
+                    </p>
+              </div>
+              <div class="item" onclick="showElem(2097)">
+                  <p>
+                      Заслонка
+                  </p>
+            </div>
+                  </div>
+
+                  <div class="list list6" data-id="6">
+                  
+                      <h2  onclick="back()">Назад</h2>
+                  <div id="container1" style="width: 80%; height: 300px; margin: 25px auto"></div>
+                  <div id="container2" style="width: 80%; height: 300px; margin: 25px auto"></div>
                       
-                                <p onclick="" ></p>
+                    </div>
+  
+
+                  
+
+                  <div class="notifications">
+                      <h1>
+                        Уведомления
+                      </h1>
+                      <div class="alert red" onclick="openNotification('Новое','Новое','red')">
+                          <div>
     
-                        </div>
-                        <div class="item on-off on" class="">
-                      
-                            <p onclick="showElem(3099)" >Лампа</p>
-
-                    </div>
-                        <div class="item on-off off">
-                      
-                            <p onclick="showElem(2727)" >Холодильник</p>
-
-                    </div>
-                    <div class="item on-off on">
-                      
-                        <p onclick="showElem(3098)" >Лампа</p>
-
-                </div>
-                <div class="item on-off on">
-                      
-                    <p onclick="showElem(3100)" >Лампа</p>
-
-            </div>
-            <div class="item on-off on">
-                      
-                <p onclick="showElem(3101)" >Лампа</p>
-
-        </div>
-        <div id="newElements">
-
-        </div>
-                    <div class="item" id="addDevice">
-                            <div class="button">
-                                    <p onclick="openModal()" >Добавить</p>
-        
                             </div>
-                        </div>
-                </div>
-                <div class="list list3" data-id="3">
-                    <p onclick="back()"><i></i>Назад</p>
-                    <div class="item">
-                            <p>Свет в 7:00</p>
-                            <img src="css/arrow.png" alt="" class="arrow">
-                    </div>
-                    <div class="item hidden" id="automatizationTemplate">
-                        <p>Свет в 7:00</p>
-                        <img src="css/arrow.png" alt="" class="arrow">
-                </div>
-                    <div class="item">
-                            <p>Свет в 18:00</p>
-                            <img src="css/arrow.png" alt="" class="arrow">
-                    </div>
-                    <div id="newElements2">
-
-                    </div>
-                    <div class="item" id="addAutomatization">
-                        <div class="button">
-                                <p onclick="openModalAuto()"  >Добавить</p>
-    
-                        </div>
-                    </div>
-                </div>
-                <div class="list list4" data-id="4">
-                    <p onclick="back()"><i></i>Назад</p>
-                      <div class="chart-card">
-                        <div class="about">
-                          <h3>Температура</h3>
-                        </div>
-                        
-                        <canvas id="canvas"></canvas>
-                        
-                        <div class="axis">
-                          <div class="tick">
-                            <span class="day-number">10</span>
-                            <span class="day-name">MON</span>
-                            <span class="value value--this">26°C</span>
-                          </div>
-                          <div class="tick">
-                            <span class="day-number">11</span>
-                            <span class="day-name">TUE</span>
-                            <span class="value value--this">14°C</span>
-                          </div>
-                          <div class="tick">
-                            <span class="day-number">12</span>
-                            <span class="day-name">WED</span>
-                            <span class="value value--this">22°C</span>
-                          </div>
-                          <div class="tick">
-                            <span class="day-number">13</span>
-                            <span class="day-name">THU</span>
-                            <span class="value value--this">12°C</span>
-                          </div>
-                          <div class="tick">
-                            <span class="day-number">14</span>
-                            <span class="day-name">FRI</span>
-                            <span class="value value--this">20°C</span>
-                          </div>
-                          <div class="tick">
-                            <span class="day-number">15</span>
-                            <span class="day-name">SAT</span>
-                            <span class="value value--this">12°C</span>
-                          </div>
-                          <div class="tick">
-                            <span class="day-number">16</span>
-                            <span class="day-name">SUN</span>
-                            <span class="value value--this">18°C</span>
-                          </div>
-                        </div>
+                            <p>
+                                Новое уведомление
+                            </p>
                       </div>
-
-                      <div class="chart-card-2">
-                        <div class="about">
-                          <h3>Электричество</h3>
-                        </div>
-                        
-                        <canvas id="canvasD" height="200"></canvas>
-                        <span class="s1"  onclick="showElems([2726])"></span>
-                        <span class="s2"  onclick="showElems([3098,3099,3100,3101])"></span>
-                        <span class="s3" onclick="showElems([3098,3099])"></span>
-                        <canvas id="tooltip-canvas" width="150" height="100"></canvas>
-                        
-                        <button type="button" id="reload" class="btn-reload">
-                          <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.4 61.2"><style>.st0{fill:#AAAAAA;}</style><title>59 all</title><path class="st0" d="M57.6 0h8.7c2.8 0 5 2.2 5 5v51.1c0 2.8-2.2 5-5 5h-8.7c-2.8 0-5-2.2-5-5V5c0-2.7 2.2-5 5-5zM5 24.9h8.7c2.8 0 5 2.2 5 5v26.2c0 2.8-2.2 5-5 5H5c-2.8 0-5-2.2-5-5V29.9c0-2.8 2.2-5 5-5zM31.4 17.8h8.7c2.8 0 5 2.2 5 5v33.4c0 2.8-2.2 5-5 5h-8.7c-2.8 0-5-2.2-5-5V22.8c0-2.8 2.3-5 5-5z"/></svg>
-                        </button>
-                      </div>
-                </div>
-
-            </section> -->
-            <div class="modal">
-                <form action="">
-                    <div class="close" onclick="closeModal()">
-                        <span></span>
-                        <span></span>
-                    </div>
-                    <h3>
-                        Добавить утройство
-                    </h3>
-                    <input type="text" name="" placeholder="Название" id="DeviceName">
-                    <select name=""  id="DeviceSelector">
-                        <option value="">Источник</option>
-                        <option value="1234">Лампа</option>
-                    </select>
-                    <input type="button" value="Добавить" onclick="addDevice()">
-                </form>
-            </div>
-            <div class="modalAuto">
-                <form action="">
-                    <div class="close" onclick="closeModalAuto()">
-                        <span></span>
-                        <span></span>
-                    </div>
-                    <h3>
-                        Автоматизация
-                    </h3>
-                    <input type="text" name="" placeholder="Название" id="DeviceName1">
-                    <select name="" onchange="showLabel()"  id="triggerSelector">
-                        <option value="">Триггер</option>
-                        <option value="Время">Время</option>
-                        <option value="Событие">Событие</option>
                       
-                    </select>
-                    <select name=""  id="autoSelector">
-                        <option value="">Источник</option>
-                        <option value="1234">Лампа 1</option>
-                        <option value="1234">Холодильник</option>
-                        <option value="1234">Лампа 3</option>
-                        <option value="1234">Микроволновка</option>
-                        <option value="1234">Лампа 2</option>
-                    </select>
-                    <label class="hidden" id="triggerLabel">Время</label>
-                    <input type="time" class="hidden" name="" id="DateTime">
-                    <input type="button" value="Добавить" onclick="addAutomatization()" >
-                </form>
+                  </div>
+            </section>
+           
+            <div id="notification-details" class="" >
+                <div >
+                    <div class="close" onclick='$("#notification-details").removeClass("open")'>
+                        <span></span>
+                        <span></span>
+                    </div>
+                  <h3 class=""></h3>
+                  <p></p>
+                </div>
             </div>
-    <!--NavBar-->
-    <!-- <nav class="navbar navbar-inverse navbar-fixed-top" id="my-navbar">
-        <div class="container">
-            <div class="collapse navbar-collapse" id="navbar-collapse">
-           \     <ul class="nav navbar-nav">
-                    <li><a href="https://github.com/jaimerosales/modelderivative-nodejs-tutorial">Model Uploader</a></li>
-                    <li><a href="https://developer.autodesk.com">Forge Developer Docs</a></li>
-                    <li style="margin-top:15px; margin-left:10px"><a href="https://twitter.com/afrojme" class="twitter-follow-button" data-show-count="false">Follow @afrojme</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                     <li><a href="https://github.com/Autodesk-Forge/viewer-nodejs-tutorial">View on GitHub </a></li>
-                </ul>
-            </div>
-        </div><!--End Container
-    </nav>End Navbar -->
-
-    <!-- <div class="container"> -->
-        <!-- This is where your viewer should attach -->
-        <!-- <div class="center-block" id="viewerDiv"></div> -->
-        
-        <!-- Extension Buttons -->
-       <!--<div class="row">-->
-             <!---->
-            <!--<div class="myButton" id="background" onclick="changeBackground()">Change Background</div> -->
-            <!--<div class="myButton" id="background" onclick="resetBackground()">Reset Background</div> -->
-            <!--<div class="myButton" id="background" onclick="loadMarkup3D()">Markup3D</div>-->
-            <!--<div class="myButton" id="background" onclick="loadTransform()">Transform</div>-->
-            <!--<div class="myButton" id="background" onclick="loadControlSelector()">Control Selector</div>-->
-        <!--</div>-->
-        <!---->
-   <!-- /container -->
-
-    <!-- <footer class="text-center">
-            <p>&copy; Autodesk Forge 2017</p>
-    </footer> -->
+  
+   
 <script>
 
 
 
+
 </script>
+    <script>
+   Highcharts.setOptions({
+    global: {
+        useUTC: false
+    }
+});
+
+var ch = [];
+ch[0] = Highcharts.chart('container1', {
+    chart: {
+        type: 'spline',
+        animation: Highcharts.svg, // don't animate in old IE
+        marginRight: 10,
+        events: {
+            load: function () {
+
+                // set up the updating of the chart each second
+                var series = this.series[0];
+                // setInterval(function () {
+                //     var x = (new Date()).getTime(), // current time
+                //         y = Math.random();
+                //     series.addPoint([x, y], true, true);
+                // }, 1000);
+            }
+        }
+    },
+    title: {
+        text: 'Датчик 1'
+    },
+    xAxis: {
+        type: 'datetime',
+        tickPixelInterval: 150
+    },
+    yAxis: {
+        title: {
+            text: 'Value'
+        },
+        plotLines: [{
+            value: 0,
+            width: 1,
+            color: '#808080'
+        }]
+    },
+    tooltip: {
+        formatter: function () {
+            return '<b>' + this.series.name + '</b><br/>' +
+                Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' +
+                Highcharts.numberFormat(this.y, 2);
+        }
+    },
+    legend: {
+        enabled: false
+    },
+    exporting: {
+        enabled: false
+    },
+    series: [{
+      name: 'Датчик 2',
+        data: (function () {
+            // generate an array of random data
+            var data = [],
+                time = (new Date()).getTime(),
+                i;
+
+            
+            for (i = -19; i <= 0; i += 1) {
+                data.push({
+                    x: time + i * 1000,
+                    y: Math.random()
+                });
+            }
+            console.log(data);
+            return data;
+        }())
+    }]
+});
+ch[1] = Highcharts.chart('container2', {
+    chart: {
+        type: 'spline',
+        animation: Highcharts.svg, // don't animate in old IE
+        marginRight: 10,
+        events: {
+            load: function () {
+
+                // set up the updating of the chart each second
+                var series = this.series[0];
+                // setInterval(function () {
+                //     var x = (new Date()).getTime(), // current time
+                //         y = Math.random();
+                //     series.addPoint([x, y], true, true);
+                // }, 1000);
+            }
+        }
+    },
+    title: {
+        text: 'Датчик 2'
+    },
+    xAxis: {
+        type: 'datetime',
+        tickPixelInterval: 150
+    },
+    yAxis: {
+        title: {
+            text: 'Value'
+        },
+        plotLines: [{
+            value: 0,
+            width: 1,
+            color: '#808080'
+        }]
+    },
+    tooltip: {
+        formatter: function () {
+            return '<b>' + this.series.name + '</b><br/>' +
+                Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' +
+                Highcharts.numberFormat(this.y, 2);
+        }
+    },
+    legend: {
+        enabled: false
+    },
+    exporting: {
+        enabled: false
+    },
+    series: [{
+        name: 'Датчик 2',
+        data: (function () {
+            // generate an array of random data
+            var data = [],
+                time = (new Date()).getTime(),
+                i;
+
+            
+            for (i = -19; i <= 0; i += 1) {
+                data.push({
+                    x: time + i * 1000,
+                    y: Math.random()
+                });
+            }
+            console.log(data);
+            return data;
+        }())
+    }]
+});
+
+        const socket = io('https://fsensor.herokuapp.com/');
+        socket.open();
+        
+        
+  socket.on('value', (data) => {
+    console.log(data);
+    // var n = parseFloat(data);
+    var json = JSON.parse(data);
+    addSensorValueByIdToBrouserList(json.id,json.value);
+    var text = "Датчик "+json.id+": "+json.value+" Cº";
+    ch[parseInt(json.id)-1].series[0].addPoint([(new Date()).getTime(),json.value],true,true);
+    if ( json.value < 50)
+    {
+      // addNotification(text,"green");
+      changeMaterial(parseInt(json.id)-1,'normal')
+    }
+    else if (json.value > 70)
+    {
+      addNotification(text,"red");
+      changeMaterial(parseInt(json.id)-1,'danger');
+      
+      
+      
+    }
+    else {
+      addNotification(text,"yellow");
+      changeMaterial(parseInt(json.id)-1,'attention')      
+    }
+  });
+  
+  
+                  
+  
+           
+         
+        </script>
+
 </body>
 </html>
 

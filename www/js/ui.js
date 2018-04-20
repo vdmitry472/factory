@@ -77,28 +77,7 @@ $(document).ready(
     
   function () {
 
-/////////////////////
-// JSON
-////////////////////
 
-checkList();
-if (pageID = 4) setDiagramData();
-
-$('.on-off').click( function(){
-  if($(this).hasClass("on"))
-  {
-      $(this).removeClass("on");
-      $(this).addClass("off");
-      
-  }
-  else {
-    $(this).removeClass("off");
-      $(this).addClass("on");
-      
-
-  }
-
-})
 $('.burger').click( function(){
       $(".menu").addClass("open");
       
@@ -139,12 +118,6 @@ function date_time(id)
         setTimeout('date_time("'+id+'");','1000');
         return true;
 }
-function randData(id)
-{
-     
-        setTimeout('randData("'+id+'");','1000');
-        return true;
-}
 function back()
 {
   viewer.autocam.goHome();
@@ -152,6 +125,43 @@ function back()
     viewer.impl.selector.setSelection(0,viewer.impl,0);
     $(".list"+openedPage).removeClass("open");
     
+}
+function showNotification()
+{
+
+}
+function addNotification(title,type)
+{
+  $(".push").addClass("active");
+  $(".push").removeClass("red");
+  $(".push").removeClass("yellow");
+  $(".push").removeClass("green");
+  $(".push").addClass(type);
+  $(".push p").html("<div></div>" +title);
+  setTimeout(function(){
+  $(".push").removeClass("active");
+  },2000);
+
+
+  var selectingTemplate = $('.notifications > :nth-child(2)');
+  var newSelectFrom = selectingTemplate.clone();
+  newSelectFrom.html("<div></div><p>"+title+"</p>");
+  newSelectFrom.removeClass("red");
+  newSelectFrom.removeClass("yellow");
+  newSelectFrom.removeClass("green");
+  
+  newSelectFrom.addClass(type);
+  newSelectFrom.insertBefore(selectingTemplate);
+ var n = newSelectFrom.clone().insertBefore($('#аll-notifications > :nth-child(2)'));
+  
+}
+function openNotification(title, desc,type)
+{ 
+  $("#notification-details").addClass("open");
+  $("#notification-details h3").addClass(type);
+  $("#notification-details p").text(desc)
+  $("#notification-details h3").html("<div></div>"+title)
+  
 }
 function openModal() {
     $(".modal").addClass("open");

@@ -117,7 +117,10 @@ function onLoadModelSuccess(model) {
  * Invoked when there's an error fetching the SVF file.
  */
 function onLoadModelError(viewerErrorCode) {
-    console.error('onLoadModelError() - errorCode:' + viewerErrorCode);
+    // console.error('onLoadModelError() - errorCode:' + viewerErrorCode);
+    addSphere(1);
+addSphere(2);
+addSphere(4);
 }
 
 
@@ -452,32 +455,94 @@ function deleteElementFromList(id)
 }
 
 // ДИАГРАММА
+function changeMaterial(id,message){
+          
+    if (message=='danger'){
+     var material_red = new THREE.MeshPhongMaterial({ color: 0xFF0000 });
+     viewer.impl.matman().addMaterial('ADN-Material' + 'white', material_red, true);
+     sphreres[id].material=material_red;
+    }
+     
+    if (message=='attention'){
+     var material_yellow = new THREE.MeshPhongMaterial({ color: 0xFFFF00 });
+     viewer.impl.matman().addMaterial('ADN-Material' + 'white', material_yellow, true);
+     sphreres[id].material=material_yellow;
+    }
 
 
-function setDiagramData(){
-    var list = getCookie("list");
-    list = JSON.parse(list);
-    
-    var arrayOfLabels = [];
-    var arrayOfValue = [];
-
-    list.elements.forEach(function(item, i, arr) {
-        if(item.value != -1){
-            if(arrayOfLabels.indexOf(item.category) == -1){
-                arrayOfLabels[arrayOfLabels.length] = item.category;
-                arrayOfValue[arrayOfLabels.length-1] = item.value;
-            }else{
-                arrayOfValue[arrayOfLabels.indexOf(item.category)] += item.value
-            }
-        }
-    });
-
-    console.log(arrayOfLabels,arrayOfValue);
-
-    window.chart.data.labels = arrayOfLabels;
-    window.chart.data.datasets[0].data = arrayOfValue;
-    window.chart.update();
-
-    //addData(config, arrayOfLabels, arrayOfValue);
-
+    if (message=='normal'){
+     var material_green = new THREE.MeshPhongMaterial({ color: 0x00FF00 });
+     viewer.impl.matman().addMaterial('ADN-Material' + 'green', material_green, true);
+     sphreres[id].material=material_green;
+     }
+     viewer.impl.invalidate(true);
 }
+var sphreres = [];
+function addSphere(ElementId) {   
+     
+
+     var material_green = new THREE.MeshPhongMaterial({ color: 0x00FF00 });
+     viewer.impl.matman().addMaterial('ADN-Material' + 'green', material_green, true);
+ 
+
+
+     var boundingBox =viewer.model.getBoundingBox();
+
+     console.log(boundingBox);
+
+     var maxpt = boundingBox.max;
+
+     var minpt = boundingBox.min;
+
+     var width1 = $(".wall1").val();
+     var lenght1 = $(".wall2").val();
+     var r = 2200;
+     var lenght = lenght1;
+     var arr = new Array;
+     
+     for(i = 1; i <= Math.ceil(lenght1/(r*2)); i++) {                        
+         lenght -= (r*2);
+         arr.push(lenght);
+         arr.push(r*i);
+         
+         if (lenght < r*2) {
+             break;
+         }
+     }
+     
+     console.log(arr);
+
+     var xdiff = maxpt.x - minpt.x;
+
+     var ydiff = maxpt.y - minpt.y;
+
+     var zdiff = maxpt.z - minpt.z;
+
+     //set a nice radius in the model size
+
+     var niceRadius = 0.1;
+
+ 
+     if(ElementId==1){
+     var sphere1 = new THREE.Mesh(new THREE.SphereGeometry(niceRadius, 20), material_green);
+     sphere1.position.set(maxpt.x / 2 + 2.4, 0.19, maxpt.z-5);
+     sphreres[0]=sphere1;
+     viewer.impl.scene.add(sphere1);
+     }
+     
+     if (ElementId==2){
+     var sphere2 = new THREE.Mesh(new THREE.SphereGeometry(niceRadius, 20), material_green);
+     sphere2.position.set(1.46, 0.4, maxpt.z-5);
+         sphreres[1]=sphere2;
+     viewer.impl.scene.add(sphere2);
+     }
+      
+    if (ElementId==4){
+     var sphere3 = new THREE.Mesh(new THREE.SphereGeometry(niceRadius, 20), material_green);
+     sphere3.position.set(-maxpt.x / 2+0.91, 0.3, maxpt.z/2-6);
+        sphreres[2]=sphere3;
+     viewer.impl.scene.add(sphere3);
+    }
+
+     viewer.impl.invalidate(true);
+ }
