@@ -21,7 +21,9 @@ var express = require('express');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var app = express();
+var fs = require('fs');
 
+console.log("sss");
 // this session will be used to save the oAuth token
 app.use(cookieParser());
 app.set("FORGE_CLIENT_ID","npthwr03xeosvp7aGsTQoaYTcNU8WWZw");
@@ -55,3 +57,30 @@ var oauth = require('./oauth');
 app.use('/', oauth); // redirect oauth API calls
 
 module.exports = app;
+
+function loadJson(file){
+
+	fs.writeFile('./www/test1.json', file, function (err) {
+  		if (err) return console.log(err);
+	});
+}
+
+function readJson(){
+	var for_return;
+	fs.readFile('./www/SensorsData.json', 'utf8', function (err,data) {
+  		if (err) {
+  			console.log("err");
+  			for_return = err;
+    		//return err;
+  		}else{
+  			console.log("data");
+  			for_return = data;
+  			//console.log(for_return);
+  		}
+	});
+	return for_return;
+}
+
+//console.log(readJson());
+//loadJson(readJson());
+

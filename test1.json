@@ -1,0 +1,7 @@
+function getJsonData(){
+    var jqXHR = $.ajax({
+        url: "../www/SensorsData.json",
+        async: false});
+
+    return $.parseJSON(jqXHR.responseText);
+}
