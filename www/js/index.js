@@ -481,6 +481,8 @@ function changeMaterial(id,message){
      viewer.impl.invalidate(true);
 }
 var sphreres = [];
+var niceRadius = 0.1;
+var step=0
 function addSphere(ElementId) {   
      
 
@@ -570,3 +572,4 @@ function addSphere(ElementId) {
     
           
         }
+addSphere(5555);
